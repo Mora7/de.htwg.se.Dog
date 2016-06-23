@@ -168,8 +168,8 @@ public final class Game implements IModel {
                 return false;
             }
 
-            if (from.isOccupied()) {
-                if (Draw.isDrawAllowed(from, to, selectedCard.getValue(), currentPlayer)) {
+            if (from.isOccupied() && 
+                    Draw.isDrawAllowed(from, to, selectedCard.getValue(), currentPlayer)) {
 
                     for(Player player : players){
                         for(Square occupiedSquare : player.getOccupiedSquares()){
@@ -204,7 +204,7 @@ public final class Game implements IModel {
                     info = "Der Zug war erfolgreich.";
 
                     return true;
-                }
+                
             }
 
             info = "Unerlaubter Zug.";

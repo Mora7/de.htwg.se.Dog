@@ -12,6 +12,7 @@ import de.htwg.dog.View.I_UI;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +52,7 @@ public class Tui implements I_UI {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         } catch (IOException | InterruptedException ex) { 
-            LOGGER.info(ex.getMessage()); 
+            LOGGER.info(ex.getMessage());
         }
 
         List<String> squares = new ArrayList<>();
@@ -82,7 +83,7 @@ public class Tui implements I_UI {
             }
         }
 
-         LOGGER.info(BoardLayout.get() + "," + tokens.toArray().toString() + "\n");
+         LOGGER.info(BoardLayout.get() + "," + Arrays.toString(tokens.toArray()) + "\n");
     }
     
     @Override
