@@ -34,7 +34,7 @@ public class BoardPanel extends JPanel implements MouseListener {
     private Square selectedSquare1;
     private Square selectedSquare2;
     private final Board board = new Board();
-    private final static Logger logger = Logger.getLogger("de.htwg.dog.View.Gui.Boardpanel");
+    private static final Logger LOGGER = Logger.getLogger("de.htwg.dog.View.Gui.Boardpanel");
     
     public BoardPanel() {
 
@@ -96,7 +96,9 @@ public class BoardPanel extends JPanel implements MouseListener {
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.75f));
             g2d.drawImage(image, center.x - image.getWidth() / 2, center.y - image.getHeight() / 2, this);
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-        } catch (IOException ex) { logger.info(ex.getMessage()); }
+        } catch (IOException ex) { 
+            LOGGER.info(ex.getMessage()); 
+        }
     }
 
     @Override

@@ -26,14 +26,33 @@ import org.apache.log4j.Logger;
  */
 public class Tui implements I_UI {
 
-    private final static Logger logger = Logger.getLogger("de.htwg.dog.View.Tui.Tui");
+    private static final Logger LOGGER = Logger.getLogger("de.htwg.dog.View.Tui.Tui");
+    
+        private Controller contr;
+    private Game game;
+    private String currentPlayer;
+    private List<String> cards;
+    private String info = "";
+
+    public Tui(Controller controller, Game model) {
+        this.currentPlayer = "";
+        this.cards = new ArrayList<>();
+        this.cards.add(" ");
+
+        this.contr = controller;
+        this.game = model;
+
+        controller.AddUpdateListener((ActionEvent e) -> update());
+    }
     
     public void paintBoard() {
 
 
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (IOException | InterruptedException ex) { logger.info(ex.getMessage()); }
+        } catch (IOException | InterruptedException ex) { 
+            LOGGER.info(ex.getMessage()); 
+        }
 
         List<String> squares = new ArrayList<>();
 
@@ -65,23 +84,6 @@ public class Tui implements I_UI {
 
         System.out.printf(BoardLayout.get(), tokens.toArray());
     }
-
-    public Controller contr;
-    public Game game;
-
-    public Tui(Controller controller, Game model) {
-        this.currentPlayer = "";
-        this.cards = new ArrayList<>();
-        this.cards.add(" ");
-
-        this.contr = controller;
-        this.game = model;
-
-        controller.AddUpdateListener((ActionEvent e) -> {
-            update();
-        });
-    }
-
     
     @Override
     public void update() {
@@ -96,29 +98,27 @@ public class Tui implements I_UI {
         printTUI();
     }
 
-    String info = "";
-
     public void setInfo(String info) {
         this.info = info;
     }
 
     public Boolean ProcessInput(String line) {
 
-        if (line.equals("neu")) {
+        if ("neu".equals(line)) {
             contr.StartGame();
             return true;
         }
         
-        if (line.equals("v")) {
+        if ("v".equals(line)) {
             contr.DiscardCard();
             return true;
         }
 
-        if (line.equals("exit")) {
+        if ("exit".equals(line)) {
             return false;
         }
 
-        if (line.contains(",")) {
+        if (",".contains(line)) {
 
             String[] parts = line.split(",");
             if (parts.length == 3) {
@@ -138,9 +138,6 @@ public class Tui implements I_UI {
         
         return true;
     }
-
-    String currentPlayer;
-    List<String> cards;
     
     public void printTUI() {
         paintBoard();

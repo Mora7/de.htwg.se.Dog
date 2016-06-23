@@ -65,9 +65,7 @@ public final class Gui extends JFrame implements I_UI {
         this.contr=contr;
         this.game=model;
         
-        contr.AddUpdateListener((ActionEvent e) -> {
-            update();
-        });
+        contr.AddUpdateListener((ActionEvent e) -> update());
         
         setTitle("Dog");
 

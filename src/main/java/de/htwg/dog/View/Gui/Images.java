@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
 public class Images {
 
     public final Map<String, BufferedImage> images = new HashMap<>();
-    private final static Logger logger = Logger.getLogger("de.htwg.dog.View.Gui.Images");
+    private static final Logger LOGGER = Logger.getLogger("de.htwg.dog.View.Gui.Images");
 
     public Images() {
 
@@ -36,7 +36,9 @@ public class Images {
                 String name = f.getName().substring(0, f.getName().indexOf("."));
                 try {
                     images.put(name, ImageIO.read(f));
-                } catch (IOException ex) { logger.info(ex.getMessage()); }
+                } catch (IOException ex) { 
+                    LOGGER.info(ex.getMessage()); 
+                }
             }
         }
     }
