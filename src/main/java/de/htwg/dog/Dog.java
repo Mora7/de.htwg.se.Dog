@@ -11,6 +11,7 @@ import de.htwg.dog.Model.impl.Game;
 import de.htwg.dog.View.Gui.Gui;
 import de.htwg.dog.View.Tui.Tui;
 import java.util.Scanner;
+import org.apache.log4j.PropertyConfigurator;
 
 /**
  *
@@ -22,7 +23,9 @@ public class Dog {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Set up logging through log4j
+        PropertyConfigurator.configure("log4j.properties");
+                
         Game model = new Game();
         Controller cont = new Controller(model);
         Gui gui = new Gui(cont, model);

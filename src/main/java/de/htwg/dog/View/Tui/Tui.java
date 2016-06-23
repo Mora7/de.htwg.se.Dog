@@ -28,10 +28,10 @@ public class Tui implements I_UI {
 
     private static final Logger LOGGER = Logger.getLogger("de.htwg.dog.View.Tui.Tui");
     
-        private Controller contr;
-    private Game game;
+    private final Controller contr;
+    private final Game game;
     private String currentPlayer;
-    private List<String> cards;
+    private final List<String> cards;
     private String info = "";
 
     public Tui(Controller controller, Game model) {
@@ -82,7 +82,7 @@ public class Tui implements I_UI {
             }
         }
 
-        System.out.printf(BoardLayout.get(), tokens.toArray());
+         LOGGER.info(BoardLayout.get() + "," + tokens.toArray().toString() + "\n");
     }
     
     @Override
@@ -141,10 +141,10 @@ public class Tui implements I_UI {
     
     public void printTUI() {
         paintBoard();
-        System.out.println("Player: " + currentPlayer);
-        System.out.println("Karten: " + cards);
-        System.out.println(info + "\n");
-        System.out.print("Wählen Sie, getrennt mit einem Komma, eine Karte, "
+        LOGGER.info("Player: " + currentPlayer + "\n");
+        LOGGER.info("Karten: " + cards + "\n");
+        LOGGER.info(info + "\n"+ "\n");
+        LOGGER.info("Wählen Sie, getrennt mit einem Komma, eine Karte, "
                 + "ein Startfeld und ein Zielfeld (Bsp. \"SPADE_4,S1,S5\"), \n"
                 + "Karten verwerfen = \"v\", Neues Spiel = \"neu\", Spiel beenden = \"exit\": ");}
 
