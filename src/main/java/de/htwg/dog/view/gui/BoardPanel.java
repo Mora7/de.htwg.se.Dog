@@ -303,6 +303,11 @@ public class BoardPanel extends JPanel implements MouseListener {
         
             return true;
         }
+        
+        @Override
+        public int hashCode() {
+            return super.hashCode();
+        }
     }
 
     public class Board {
