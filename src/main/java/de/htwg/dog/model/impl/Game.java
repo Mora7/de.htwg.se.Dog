@@ -24,13 +24,13 @@ public final class Game implements IModel {
     String info = "";
     Player winner;
     
+    public Game() {
+        Start();
+    }
+    
     @Override
     public String getInfo(){
         return info;
-    }
-
-    public Game() {
-        Start();
     }
 
     void Start() {

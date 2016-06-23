@@ -27,7 +27,7 @@ public final class CardPanel extends JPanel implements MouseListener {
 
     List<ActionListener> listeners = new ArrayList<>();
     private List<Card> cards = new ArrayList<>();
-    private static final Images images = new Images();
+    private final Images images = new Images();
     private Card selectedCard;
 
     public CardPanel() {

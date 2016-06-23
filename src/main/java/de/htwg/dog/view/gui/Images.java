@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
  */
 public class Images {
 
-    public static final Map<String, BufferedImage> imageList = new HashMap<>();
+    public final Map<String, BufferedImage> imageList = new HashMap<>();
     private static final Logger LOGGER = Logger.getLogger("de.htwg.dog.View.Gui.Images");
 
     public Images() {

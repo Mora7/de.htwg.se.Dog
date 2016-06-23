@@ -21,6 +21,10 @@ public final class Square {
     private Player occupiedBy;
     private Type type;
     private int number;
+    
+    public Square(String name) {
+        setName(name);
+    }
 
     public Player occupiedBy(){
         return occupiedBy;
@@ -63,10 +67,6 @@ public final class Square {
 
     public int getNumber() {
         return number;
-    }
-
-    public Square(String name) {
-        setName(name);
     }
 
     public Type getType() {

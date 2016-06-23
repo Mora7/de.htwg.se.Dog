@@ -21,26 +21,6 @@ public class Player {
     private List<Square> occupiedSquares;
     private final Square startSquare;
     
-    public List<Card> getCards() {
-        return cards;
-    }
-
-    public List<Square> getFinishSquares() {
-        return finishSquares;
-    }
-
-    public List<Square> getHomeSquares() {
-        return homeSquares;
-    }
-
-    public int getPlayerNumber() {
-        return playerNumber;
-    }
-
-    public Square getStartSquare() {
-        return startSquare;
-    }
-
     public Player(Square startSquare, int number) {
 
         playerNumber = number;
@@ -59,6 +39,26 @@ public class Player {
         for (Square s : homeSquares) {
             s.setOccupation(true);
         }
+    }
+    
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public List<Square> getFinishSquares() {
+        return finishSquares;
+    }
+
+    public List<Square> getHomeSquares() {
+        return homeSquares;
+    }
+
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public Square getStartSquare() {
+        return startSquare;
     }
 
     public Card getCardByName(String name) {

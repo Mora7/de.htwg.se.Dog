@@ -295,6 +295,14 @@ public class BoardPanel extends JPanel implements MouseListener {
         public Square(String name) {
             this.name = name;
         }
+        
+        @Override
+        public boolean equals(Object obj) {
+            if (! super.equals(obj))
+                return false;
+        
+            return true;
+        }
     }
 
     public class Board {

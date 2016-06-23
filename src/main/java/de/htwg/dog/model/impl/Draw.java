@@ -22,7 +22,8 @@ public class Draw {
             for(ValueEnum value : ValueEnum.values()) {
                 if(value != ValueEnum.JOKER && value != ValueEnum.JACK) { 
                     validDraw = isDrawAllowed(from, to, value, player);
-                    if(validDraw) return validDraw;
+                    if(validDraw) 
+                        return validDraw;
                 }
             }
         }
@@ -66,7 +67,8 @@ public class Draw {
     
     public static boolean fromStandartToStandart(Square from, Square to, int valueToGo) {
         int actualValueToGo = valueToGo;
-        if(valueToGo < 0) actualValueToGo+=48;
+        if(valueToGo < 0) 
+            actualValueToGo+=48;
         int difference = Int.getDifference(from.getNumber(), to.getNumber());
         return difference == actualValueToGo;
     }
