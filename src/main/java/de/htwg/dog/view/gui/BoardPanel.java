@@ -198,13 +198,17 @@ public class BoardPanel extends JPanel implements MouseListener {
     }
     
     public String getSelectedSquare1() {
-        if(selectedSquare1 == null) return "";
-        else return selectedSquare1.getName();
+        if(selectedSquare1 == null) 
+            return "";
+        else 
+            return selectedSquare1.getName();
     }
     
     public String getSelectedSquare2() {
-        if(selectedSquare2 == null) return "";
-        else return selectedSquare2.getName();
+        if(selectedSquare2 == null) 
+            return "";
+        else 
+            return selectedSquare2.getName();
     }
 
     public Square getSquareByName(String squareName) {

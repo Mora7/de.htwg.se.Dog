@@ -16,10 +16,32 @@ import static org.junit.Assert.*;
  */
 public class CardTest {
     
-    public CardTest() {
-    }
+    Card card;
     
     @Before
     public void setUp() {
-    }    
+        card = new Card(ValueEnum.ACE, SuitEnum.CLUB);
+    }
+
+    @Test
+    public void testChangeCard() {
+        card.changeCard(ValueEnum.EIGHT, SuitEnum.DIAMOND);
+        assertEquals(card.getValue(), ValueEnum.EIGHT);
+        assertEquals(card.getSuit(), SuitEnum.DIAMOND);
+    }
+
+    @Test
+    public void testGetName() {
+        assertEquals(card.getName(), SuitEnum.CLUB.getName() + "_" + ValueEnum.ACE.getName());
+    }
+
+    @Test
+    public void testGetValue() {
+        assertEquals(card.getValue(), ValueEnum.ACE);
+    }
+
+    @Test
+    public void testGetSuit() {
+        assertEquals(card.getSuit(), SuitEnum.CLUB);
+    }   
 }

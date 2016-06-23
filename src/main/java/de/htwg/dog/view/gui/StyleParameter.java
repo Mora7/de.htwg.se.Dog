@@ -13,14 +13,14 @@ import java.awt.Color;
  */
 public final class StyleParameter {
 
-    final static Color colorP0 = Color.YELLOW;
-    final static Color colorP1 = Color.BLUE;
-    final static Color colorP2 = Color.GREEN;
-    final static Color colorP3 = Color.CYAN;
+    static final Color colorP0 = Color.YELLOW;
+    static final Color colorP1 = Color.BLUE;
+    static final Color colorP2 = Color.GREEN;
+    static final Color colorP3 = Color.CYAN;
 
-    final static Color colorSelectedS1 = Color.MAGENTA;
-    final static Color colorSelectedS2 = Color.RED;
-    final static Color colorBorder = Color.BLACK;
+    static final Color colorSelectedS1 = Color.MAGENTA;
+    static final Color colorSelectedS2 = Color.RED;
+    static final Color colorBorder = Color.BLACK;
     
     private StyleParameter(){
         
