@@ -33,14 +33,13 @@ public final class CardPanel extends JPanel implements MouseListener {
         for (String card : cards) {
             Card c = new Card(card);
             this.cards.add(c);
-            if(selectedCard != null){
-                if (selectedCard.value.equals(card))
+            if(selectedCard != null && selectedCard.value.equals(card)){
                 selectedCard = c;
             }
         }
     }
 
-    Images images = new Images();
+    private final Images images = new Images();
     private Card selectedCard;
 
     public CardPanel() {
@@ -106,18 +105,22 @@ public final class CardPanel extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        // Has to be implemented because of Mouselistener
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        // Has to be implemented because of Mouselistener
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        // Has to be implemented because of Mouselistener
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        // Has to be implemented because of Mouselistener
     }
 
     private class Card {

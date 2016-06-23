@@ -264,18 +264,22 @@ public class BoardPanel extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        // Has to be implemented because of Mouselistener
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        // Has to be implemented because of Mouselistener
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        // Has to be implemented because of Mouselistener
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        // Has to be implemented because of Mouselistener
     }
 
     private class Square extends Ellipse2D.Double {
@@ -289,7 +293,6 @@ public class BoardPanel extends JPanel implements MouseListener {
         public Square(String name) {
             this.name = name;
         }
-
     }
 
     public class Board {
@@ -341,12 +344,12 @@ public class BoardPanel extends JPanel implements MouseListener {
                 this.occupiedSquares = occupiedSquares;
             }
 
-            public int playerNumber;
-            public Color playerColor;
-            public final List<Square> homeSquares;
-            public final List<Square> finishSquares;
-            public List<String> occupiedSquares;
-            public final String startSquare;
+            private final int playerNumber;
+            private Color playerColor;
+            private final List<Square> homeSquares;
+            private final List<Square> finishSquares;
+            private List<String> occupiedSquares;
+            private final String startSquare;
         }
     }
 
