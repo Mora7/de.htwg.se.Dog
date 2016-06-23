@@ -11,7 +11,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -33,8 +32,8 @@ public class BoardPanel extends JPanel implements MouseListener {
     List<ActionListener> listeners = new ArrayList<>();
     private Square selectedSquare1;
     private Square selectedSquare2;
-    public final Board board = new Board();
-    public final double scale;
+    private final Board board = new Board();
+    private final double scale;
 
     public BoardPanel() {
 
@@ -42,8 +41,13 @@ public class BoardPanel extends JPanel implements MouseListener {
         addMouseListener(this);
         setDoubleBuffered(true);
 
-        scale = this.getWidth() / 373;
+        scale = this.getWidth() / 373.0;
     }
+
+    public Board getBoard() {
+        return board;
+    }
+    
 
     public void addActionListener(ActionListener listener) {
         listeners.add(listener);
@@ -94,6 +98,7 @@ public class BoardPanel extends JPanel implements MouseListener {
             g2d.drawImage(image, center.x - image.getWidth() / 2, center.y - image.getHeight() / 2, this);
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
