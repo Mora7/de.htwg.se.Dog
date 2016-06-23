@@ -187,7 +187,7 @@ public class BoardPanel extends JPanel implements MouseListener {
     public void checkIfSquareIsClicked(MouseEvent e, List<Square> squareList) {
         for (Square square : squareList) {
             if (square.contains(e.getX(), e.getY()) && e.getButton() == 1) {
-                SquareClicked(square);
+                squareClicked(square);
             }
         }
     }
@@ -230,7 +230,7 @@ public class BoardPanel extends JPanel implements MouseListener {
     }
 
 
-    public void SquareClicked(Square clickedSquare) {
+    public void squareClicked(Square clickedSquare) {
         if (selectedSquare1 == null && clickedSquare != selectedSquare2) {
             selectedSquare1 = clickedSquare;
         } else if (selectedSquare1 == clickedSquare) {
@@ -295,6 +295,9 @@ public class BoardPanel extends JPanel implements MouseListener {
 
     public class Board {
 
+        private final List<Square> squares = new ArrayList<>();
+        private final List<Player> players = new ArrayList<>();
+        
         public Board() {
 
             for (int i = 0; i < 48; i++) {
@@ -308,14 +311,19 @@ public class BoardPanel extends JPanel implements MouseListener {
 
         }
 
-        private final List<Square> squares = new ArrayList<>();
-        private final List<Player> players = new ArrayList<>();
+        
 
         public List<Player> getPlayers() {
             return players;
         }     
 
         public class Player {
+            
+            private final int playerNumber;
+            private Color playerColor;
+            private final List<Square> homeSquares;
+            private final List<Square> finishSquares;
+            private List<String> occupiedSquares;
 
             public Player(Color color, String startSquare, int number) {
 
@@ -323,8 +331,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                 homeSquares = new ArrayList<>();
                 finishSquares = new ArrayList<>();
                 occupiedSquares = new ArrayList<>();
-
-                //this.startSquare = startSquare;
                 playerColor = color;
 
                 for (int i = 0; i < 4; i++) {
@@ -341,12 +347,6 @@ public class BoardPanel extends JPanel implements MouseListener {
             public void setOccupiedSquares(List<String> occupiedSquares) {
                 this.occupiedSquares = occupiedSquares;
             }
-
-            private final int playerNumber;
-            private Color playerColor;
-            private final List<Square> homeSquares;
-            private final List<Square> finishSquares;
-            private List<String> occupiedSquares;
         }
     }
 

@@ -59,8 +59,11 @@ public final class Game implements IModel {
     
     void newRound() {
 
-        if (cardsPerHand == 1)  cardsPerHand = 6;
-        if (cardsPerHand * 4 > deck.undealedCards.size()) deck = new Deck();
+        if (cardsPerHand == 1)  
+            cardsPerHand = 6;
+        
+        if (cardsPerHand * 4 > deck.undealedCards.size()) 
+            deck = new Deck();
 
         for (Player player : players) {
             for (int i = 0; i < cardsPerHand; i++) {
@@ -79,7 +82,8 @@ public final class Game implements IModel {
             int playerNumber = currentPlayer.getPlayerNumber();
             Player nextPlayer;
 
-            if (playerNumber == 3) playerNumber = 0;
+            if (playerNumber == 3) 
+                playerNumber = 0;
             else playerNumber++;
 
             nextPlayer = players.get(playerNumber);
@@ -91,8 +95,10 @@ public final class Game implements IModel {
                     return;
                 }
 
-                if (playerNumber == 3) playerNumber = 0;
-                else playerNumber++;
+                if (playerNumber == 3) 
+                    playerNumber = 0;
+                else 
+                    playerNumber++;
 
                 nextPlayer = players.get(playerNumber);
             }
