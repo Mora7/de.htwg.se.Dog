@@ -53,12 +53,12 @@ public class Controller {
     }
 
     public int GetCurrentPlayerNo(){
-        return game.getCurrentPlayer().playerNumber;
+        return game.getCurrentPlayer().getPlayerNumber();
     }
     
     public int GetWinnerNo(){
         if(game.getWinner() == null) return -1;
-        else return game.getWinner().playerNumber;
+        else return game.getWinner().getPlayerNumber();
     }
     
     public String GetInfo(){

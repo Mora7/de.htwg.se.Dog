@@ -197,7 +197,7 @@ public final class Gui extends JFrame implements I_UI {
         label.setText(currentPlayer);
         
         for (Player player : game.getPlayers()) {
-            boardPanel.getBoard().getPlayers().get(player.playerNumber)
+            boardPanel.getBoard().getPlayers().get(player.getPlayerNumber())
                     .setOccupiedSquares(player.getStringOccupiedSquares());
         }
         

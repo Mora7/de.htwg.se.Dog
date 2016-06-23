@@ -21,8 +21,6 @@ public interface IModel {
 
     public Card getCard(String name);
     public Square getSquare(String name);
-    
-    //public List<Square> getOccupiedSquares(int playerNumber);
 
     public void discardCards();
     public boolean doTurn(String s1, String s2, String card);

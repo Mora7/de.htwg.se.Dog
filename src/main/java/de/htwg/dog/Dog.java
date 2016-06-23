@@ -17,7 +17,7 @@ import java.util.Scanner;
  * @author kev
  */
 public class Dog {
-
+    
     /**
      * @param args the command line arguments
      */
@@ -26,6 +26,7 @@ public class Dog {
         Game model = new Game();
         Controller cont = new Controller(model);
         Gui gui = new Gui(cont, model);
+        gui.repaint();
         Tui tui = new Tui(cont, model);
         cont.StartGame();
         

@@ -15,12 +15,12 @@ import java.util.List;
 public class Player {
     
     private List<Card> cards = new ArrayList<>();
-    public int playerNumber;
+    private int playerNumber;
     private final List<Square> homeSquares;
     private final List<Square> finishSquares;
     private List<Square> occupiedSquares;
     private final Square startSquare;
-
+    
     public List<Card> getCards() {
         return cards;
     }

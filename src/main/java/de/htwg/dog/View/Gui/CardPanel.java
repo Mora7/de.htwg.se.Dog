@@ -26,7 +26,7 @@ import javax.swing.JPanel;
 public final class CardPanel extends JPanel implements MouseListener {
 
     List<ActionListener> listeners = new ArrayList<>();
-    public List<Card> cards = new ArrayList<>();
+    private List<Card> cards = new ArrayList<>();
 
     public void setCards(List<String> cards) {
         this.cards = new ArrayList<>();

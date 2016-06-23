@@ -43,8 +43,8 @@ public final class Game implements IModel {
         players.add(new Player(board.getSquareByName("S36"), 3));
 
         for (Player player : players) {
-            board.squares.addAll(player.getFinishSquares());
-            board.squares.addAll(player.getHomeSquares());
+            board.getSquares().addAll(player.getFinishSquares());
+            board.getSquares().addAll(player.getHomeSquares());
         }
 
         deck = new Deck();
@@ -76,7 +76,7 @@ public final class Game implements IModel {
         
         if(!checkVictoryConditions())
         {
-            int playerNumber = currentPlayer.playerNumber;
+            int playerNumber = currentPlayer.getPlayerNumber();
             Player nextPlayer;
 
             if (playerNumber == 3) playerNumber = 0;
@@ -125,7 +125,7 @@ public final class Game implements IModel {
     @Override
     public void discardCards() {
         currentPlayer.getCards().clear();
-        info = "Player " + currentPlayer.playerNumber + " hat die Karten verworfen.";
+        info = "Player " + currentPlayer.getPlayerNumber() + " hat die Karten verworfen.";
         nextPlayer();
     }
     

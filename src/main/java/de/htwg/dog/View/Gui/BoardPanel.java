@@ -308,10 +308,6 @@ public class BoardPanel extends JPanel implements MouseListener {
         private final List<Square> squares = new ArrayList<>();
         private final List<Player> players = new ArrayList<>();
 
-        public List<Square> getSquares() {
-            return squares;
-        }
-
         public List<Player> getPlayers() {
             return players;
         }     

@@ -14,8 +14,12 @@ import java.util.List;
  */
 public class Board {
 
-    public final List<Square> squares;
+    private final List<Square> squares;
 
+    public List<Square> getSquares() {
+        return squares;
+    }
+    
     public Board() {
         this.squares = new ArrayList<>();
 

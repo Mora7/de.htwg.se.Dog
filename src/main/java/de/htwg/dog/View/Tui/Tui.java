@@ -47,7 +47,7 @@ public class Tui implements I_UI {
 
         for (Player player : game.getPlayers()) {
             for (String occupiedSquare : player.getStringOccupiedSquares()) {
-                mapOccupiedSquares.put(occupiedSquare, "P" + player.playerNumber);
+                mapOccupiedSquares.put(occupiedSquare, "P" + player.getPlayerNumber());
             }
         }
 
