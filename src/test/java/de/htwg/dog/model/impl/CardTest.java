@@ -6,6 +6,9 @@
 
 package de.htwg.dog.model.impl;
 
+import de.htwg.dog.model.impl.Card;
+import de.htwg.dog.model.impl.Player;
+import de.htwg.dog.model.impl.Square;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
