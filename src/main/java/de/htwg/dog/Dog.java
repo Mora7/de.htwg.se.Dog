@@ -6,10 +6,10 @@
 
 package de.htwg.dog;
 
-import de.htwg.dog.Controller.Controller;
-import de.htwg.dog.Model.impl.Game;
-import de.htwg.dog.View.Gui.Gui;
-import de.htwg.dog.View.Tui.Tui;
+import de.htwg.dog.controller.Controller;
+import de.htwg.dog.model.impl.Game;
+import de.htwg.dog.view.gui.Gui;
+import de.htwg.dog.view.tui.Tui;
 import java.util.Scanner;
 import org.apache.log4j.PropertyConfigurator;
 
