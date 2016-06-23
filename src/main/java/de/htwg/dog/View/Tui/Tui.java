@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -25,13 +26,14 @@ import java.util.regex.Pattern;
  */
 public class Tui implements I_UI {
 
+    private final static Logger logger = Logger.getLogger("de.htwg.dog.View.Tui.Tui");
+    
     public void paintBoard() {
 
 
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (IOException | InterruptedException ex) {
-        }
+        } catch (IOException | InterruptedException ex) { logger.info(ex.getMessage()); }
 
         List<String> squares = new ArrayList<>();
 

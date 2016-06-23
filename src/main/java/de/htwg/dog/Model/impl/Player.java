@@ -14,12 +14,32 @@ import java.util.List;
  */
 public class Player {
     
-    List<Card> cards = new ArrayList<>();
+    private List<Card> cards = new ArrayList<>();
     public int playerNumber;
-    public final List<Square> homeSquares;
-    public final List<Square> finishSquares;
-    public List<Square> occupiedSquares;
-    public final Square startSquare;
+    private final List<Square> homeSquares;
+    private final List<Square> finishSquares;
+    private List<Square> occupiedSquares;
+    private final Square startSquare;
+
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public List<Square> getFinishSquares() {
+        return finishSquares;
+    }
+
+    public List<Square> getHomeSquares() {
+        return homeSquares;
+    }
+
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public Square getStartSquare() {
+        return startSquare;
+    }
 
     public Player(Square startSquare, int number) {
 

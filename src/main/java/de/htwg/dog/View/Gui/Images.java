@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -21,6 +22,7 @@ import javax.imageio.ImageIO;
 public class Images {
 
     public final Map<String, BufferedImage> images = new HashMap<>();
+    private final static Logger logger = Logger.getLogger("de.htwg.dog.View.Gui.Images");
 
     public Images() {
 
@@ -34,8 +36,7 @@ public class Images {
                 String name = f.getName().substring(0, f.getName().indexOf("."));
                 try {
                     images.put(name, ImageIO.read(f));
-                } catch (IOException ex) {
-                }
+                } catch (IOException ex) { logger.info(ex.getMessage()); }
             }
         }
     }

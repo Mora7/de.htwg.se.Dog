@@ -22,9 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 
 /**
  *
@@ -36,8 +34,8 @@ public class BoardPanel extends JPanel implements MouseListener {
     private Square selectedSquare1;
     private Square selectedSquare2;
     private final Board board = new Board();
-    private Logger logger = Logger.getLogger("de.htwg.dog.View.Gui.Boardpanel");
-
+    private final static Logger logger = Logger.getLogger("de.htwg.dog.View.Gui.Boardpanel");
+    
     public BoardPanel() {
 
         setBackground(Color.lightGray);
@@ -98,9 +96,7 @@ public class BoardPanel extends JPanel implements MouseListener {
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.75f));
             g2d.drawImage(image, center.x - image.getWidth() / 2, center.y - image.getHeight() / 2, this);
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-        } catch (IOException ex) {
-            logger.log(Priority.ERROR, ex.getMessage());
-        }
+        } catch (IOException ex) { logger.info(ex.getMessage()); }
     }
 
     @Override
@@ -309,8 +305,16 @@ public class BoardPanel extends JPanel implements MouseListener {
 
         }
 
-        public final List<Square> squares = new ArrayList<>();
-        public final List<Player> players = new ArrayList<>();
+        private final List<Square> squares = new ArrayList<>();
+        private final List<Player> players = new ArrayList<>();
+
+        public List<Square> getSquares() {
+            return squares;
+        }
+
+        public List<Player> getPlayers() {
+            return players;
+        }     
 
         public class Player {
 

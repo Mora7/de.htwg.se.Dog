@@ -24,6 +24,7 @@ public final class Game implements IModel {
     String info = "";
     Player winner;
     
+    @Override
     public String getInfo(){
         return info;
     }
@@ -42,8 +43,8 @@ public final class Game implements IModel {
         players.add(new Player(board.getSquareByName("S36"), 3));
 
         for (Player player : players) {
-            board.squares.addAll(player.finishSquares);
-            board.squares.addAll(player.homeSquares);
+            board.squares.addAll(player.getFinishSquares());
+            board.squares.addAll(player.getHomeSquares());
         }
 
         deck = new Deck();
@@ -65,7 +66,7 @@ public final class Game implements IModel {
             for (int i = 0; i < cardsPerHand; i++) {
                 Card card = deck.undealedCards.get(new Random().nextInt(deck.undealedCards.size() - 1));
                 deck.undealedCards.remove(card);
-                player.cards.add(card);
+                player.getCards().add(card);
             }
         }
         cardsPerHand--;
@@ -83,7 +84,7 @@ public final class Game implements IModel {
 
             nextPlayer = players.get(playerNumber);
 
-            while (nextPlayer.cards.isEmpty()) {
+            while (nextPlayer.getCards().isEmpty()) {
                 if (nextPlayer == currentPlayer) {
                     newRound();
                     nextPlayer();
@@ -102,7 +103,7 @@ public final class Game implements IModel {
 
     public void setOccupiedSquares() {
         for (Player player : players)
-            for (Square square : player.occupiedSquares)
+            for (Square square : player.getOccupiedSquares())
                 square.setOccupation(true);
     }
 
@@ -123,7 +124,7 @@ public final class Game implements IModel {
 
     @Override
     public void discardCards() {
-        currentPlayer.cards.clear();
+        currentPlayer.getCards().clear();
         info = "Player " + currentPlayer.playerNumber + " hat die Karten verworfen.";
         nextPlayer();
     }
@@ -171,17 +172,17 @@ public final class Game implements IModel {
                 if (Draw.isDrawAllowed(from, to, selectedCard.getValue(), currentPlayer)) {
 
                     for(Player player : players){
-                        for(Square occupiedSquare : player.occupiedSquares){
+                        for(Square occupiedSquare : player.getOccupiedSquares()){
                             if(occupiedSquare.getName().equals(to.getName())){
-                                player.occupiedSquares.remove(to);
+                                player.getOccupiedSquares().remove(to);
                                 to.setOccupation(false);
 
                                 if(selectedCard.getValue() == ValueEnum.JACK) {
-                                    player.occupiedSquares.add(from);
+                                    player.getOccupiedSquares().add(from);
                                 } else {
-                                    for(Square homeSquare : player.homeSquares){
+                                    for(Square homeSquare : player.getHomeSquares()){
                                         if(!homeSquare.isOccupied())
-                                            player.occupiedSquares.add(homeSquare);
+                                            player.getOccupiedSquares().add(homeSquare);
                                             homeSquare.setOccupation(true);
                                             break;
                                     }
@@ -191,13 +192,13 @@ public final class Game implements IModel {
                         }
                     }
 
-                    currentPlayer.occupiedSquares.remove(from);
+                    currentPlayer.getOccupiedSquares().remove(from);
                     from.setOccupation(false);
 
-                    currentPlayer.occupiedSquares.add(to);
+                    currentPlayer.getOccupiedSquares().add(to);
                     to.setOccupation(true);
 
-                    currentPlayer.cards.remove(selectedCard);
+                    currentPlayer.getCards().remove(selectedCard);
 
                     nextPlayer();
                     info = "Der Zug war erfolgreich.";
@@ -217,7 +218,7 @@ public final class Game implements IModel {
 
         boolean hasWon = true;
 
-        for (Square square : currentPlayer.finishSquares)
+        for (Square square : currentPlayer.getFinishSquares())
             hasWon &= square.isOccupied();
 
         if(hasWon) {

@@ -11,6 +11,9 @@ package de.htwg.dog.Model.impl;
  */
 public class Draw {
 
+    private Draw() {
+    }
+    
     public static boolean isDrawAllowed(Square from, Square to, ValueEnum card, Player player) {
 
         boolean validDraw = false;
@@ -24,13 +27,13 @@ public class Draw {
             }
         }
 
-        for (Square square : player.occupiedSquares) {
+        for (Square square : player.getOccupiedSquares()) {
             
             // square has token from current player
             if (from.getName().equals(square.getName())) {
 
                 //from home to start square
-                if (from.getType() == Square.Type.HOME && to == player.startSquare) {
+                if (from.getType() == Square.Type.HOME && to == player.getStartSquare()) {
                     if (card == ValueEnum.ACE || card == ValueEnum.KING) {
                         return true;
                     }
@@ -42,14 +45,14 @@ public class Draw {
                     validDraw |= fromStandartToStandart(from, to, card.getI2());
                     validDraw |= (card == ValueEnum.JACK) 
                                     && to.isOccupied() 
-                                    && !player.occupiedSquares.contains(to);
+                                    && !player.getOccupiedSquares().contains(to);
                     
                     return validDraw;
                 }
 
                 //from standart to finish square
                 if (from.getType() == Square.Type.STANDART && to.getType() == Square.Type.FINISH) {
-                    for(Square finishSquare : player.finishSquares){
+                    for(Square finishSquare : player.getFinishSquares()){
                         if(to.getName().equals(finishSquare.getName())){
                             validDraw |= fromNormalToFinish(from,to,card.getI1(),player);
                             validDraw |= fromNormalToFinish(from,to,card.getI2(),player);
@@ -69,8 +72,8 @@ public class Draw {
     }
 
     public static boolean fromNormalToFinish(Square from, Square to, int valueToGo, Player player) {
-        if (from != player.startSquare && valueToGo > 0) {
-            int difference = Int.getDifference(from.getNumber(), player.startSquare.getNumber());
+        if (from != player.getStartSquare() && valueToGo > 0) {
+            int difference = Int.getDifference(from.getNumber(), player.getStartSquare().getNumber());
             return difference + to.getNumber() + 1 == valueToGo;
         }
 
@@ -80,6 +83,9 @@ public class Draw {
 
     static class Int {
 
+        private Int(){
+        }
+        
         public static int getDifference(int i1, int i2) {
             int diff = i2 - i1;
             if (diff < 0) {

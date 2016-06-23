@@ -75,7 +75,6 @@ public final class Gui extends JFrame implements I_UI {
         
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
     
     public void createGui(){
@@ -198,7 +197,7 @@ public final class Gui extends JFrame implements I_UI {
         label.setText(currentPlayer);
         
         for (Player player : game.getPlayers()) {
-            boardPanel.getBoard().players.get(player.playerNumber)
+            boardPanel.getBoard().getPlayers().get(player.playerNumber)
                     .setOccupiedSquares(player.getStringOccupiedSquares());
         }
         
