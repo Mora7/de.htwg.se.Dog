@@ -44,7 +44,7 @@ public class Tui implements I_UI {
         this.contr = controller;
         this.game = model;
 
-        controller.AddUpdateListener((ActionEvent e) -> update());
+        controller.addUpdateListener((ActionEvent e) -> update());
     }
     
     public void paintBoard() {
@@ -92,11 +92,11 @@ public class Tui implements I_UI {
     
     @Override
     public void update() {
-        List<String> currentCards = contr.GetCurrentCards();
+        List<String> currentCards = contr.getCurrentCards();
         Collections.sort(currentCards);
-        this.info = contr.GetInfo();
+        this.info = contr.getInfo();
         
-        currentPlayer = "Player " + contr.GetCurrentPlayerNo();
+        currentPlayer = "Player " + contr.getCurrentPlayerNo();
         this.cards.clear();
         this.cards.addAll(currentCards);
 
@@ -110,12 +110,12 @@ public class Tui implements I_UI {
     public Boolean ProcessInput(String line) {
 
         if ("neu".equals(line)) {
-            contr.StartGame();
+            contr.startGame();
             return true;
         }
         
         if ("v".equals(line)) {
-            contr.DiscardCard();
+            contr.discardCard();
             return true;
         }
 
@@ -132,7 +132,7 @@ public class Tui implements I_UI {
                 String selectedSquare2 = parts[2];
 
 
-                contr.DoTurn(selectedSquare1, selectedSquare2, selectedCard);
+                contr.doTurn(selectedSquare1, selectedSquare2, selectedCard);
                 
                 return true;
             }

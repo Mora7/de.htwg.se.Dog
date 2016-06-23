@@ -27,7 +27,7 @@ public class Controller {
 
     List<ActionListener> updateListener;
     
-    public void AddUpdateListener(ActionListener actionListener) {
+    public void addUpdateListener(ActionListener actionListener) {
         updateListener.add(actionListener);
     }
     
@@ -37,35 +37,35 @@ public class Controller {
         }
     }
             
-    public void DiscardCard(){
+    public void discardCard(){
         game.discardCards();
         update();
     }
 
-    public boolean DoTurn(String s1, String s2, String card) {
+    public boolean doTurn(String s1, String s2, String card) {
         boolean b = game.doTurn(s1, s2, card);
         update();
         return b;
     }
     
-    public List<String> GetCurrentCards(){
+    public List<String> getCurrentCards(){
         return game.getCurrentPlayer().getStringCards();
     }
 
-    public int GetCurrentPlayerNo(){
+    public int getCurrentPlayerNo(){
         return game.getCurrentPlayer().getPlayerNumber();
     }
     
-    public int GetWinnerNo(){
+    public int getWinnerNo(){
         if(game.getWinner() == null) return -1;
         else return game.getWinner().getPlayerNumber();
     }
     
-    public String GetInfo(){
+    public String getInfo(){
         return game.getInfo();
     }
 
-    public void StartGame() {
+    public void startGame() {
         game.startGame();
         update();
     }

@@ -65,7 +65,7 @@ public final class Gui extends JFrame implements I_UI {
         this.contr=contr;
         this.game=model;
         
-        contr.AddUpdateListener((ActionEvent e) -> update());
+        contr.addUpdateListener((ActionEvent e) -> update());
         
         setTitle("Dog");
 
@@ -102,7 +102,7 @@ public final class Gui extends JFrame implements I_UI {
             commandTextArea.setText("Wählen sie eine Karte,\n"
                     + "ein Startfeld und ein Zielfeld\n"
                     + "oder verwerfen sie ihre Karten!");
-            contr.StartGame();
+            contr.startGame();
         });
 
         Border raisedbevel = BorderFactory.createRaisedBevelBorder();
@@ -136,11 +136,11 @@ public final class Gui extends JFrame implements I_UI {
         label.setHorizontalAlignment(SwingConstants.CENTER);
         discardButton.setBorder(raisedbevel);
         discardButton.addActionListener((ActionEvent e) -> {
-            contr.DiscardCard();
+            contr.discardCard();
         });
         executeButton.setBorder(raisedbevel);
         executeButton.addActionListener((ActionEvent e) -> {
-            if(contr.DoTurn(boardPanel.getSelectedSquare1(),
+            if(contr.doTurn(boardPanel.getSelectedSquare1(),
                             boardPanel.getSelectedSquare2(),
                             cardPanel.getSelectedCard()))
             {
@@ -185,13 +185,13 @@ public final class Gui extends JFrame implements I_UI {
 
     @Override
     public void update() {
-        List<String> currentCards = contr.GetCurrentCards();
+        List<String> currentCards = contr.getCurrentCards();
         Collections.sort(currentCards);
         cardPanel.setCards(currentCards);
         
-        infoBox.setText(contr.GetInfo());
+        infoBox.setText(contr.getInfo());
         
-        String currentPlayer = "Player " + contr.GetCurrentPlayerNo();
+        String currentPlayer = "Player " + contr.getCurrentPlayerNo();
         label.setText(currentPlayer);
         
         for (Player player : game.getPlayers()) {
@@ -199,8 +199,8 @@ public final class Gui extends JFrame implements I_UI {
                     .setOccupiedSquares(player.getStringOccupiedSquares());
         }
         
-        if(contr.GetWinnerNo() >= 0){
-            commandTextArea.setText("Player " + contr.GetWinnerNo() + " hat gewonnen!\n"
+        if(contr.getWinnerNo() >= 0){
+            commandTextArea.setText("Player " + contr.getWinnerNo() + " hat gewonnen!\n"
                     + "Herzlichen Glückwunsch!\n"
                     + "Starten sie ein neues Spiel.");    
         }

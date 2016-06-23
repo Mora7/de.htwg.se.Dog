@@ -31,7 +31,7 @@ public class Dog {
         Gui gui = new Gui(cont, model);
         gui.repaint();
         Tui tui = new Tui(cont, model);
-        cont.StartGame();
+        cont.startGame();
         
         boolean continu = true;
         Scanner scanner = new Scanner(System.in);
