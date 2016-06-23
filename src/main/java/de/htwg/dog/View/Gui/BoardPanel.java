@@ -112,7 +112,7 @@ public class BoardPanel extends JPanel implements MouseListener {
         double step = 2 * Math.PI / 48;
         double x, y;
         int shortPanelSide = Math.min(getWidth(), getHeight());
-        double drawAreaSide = shortPanelSide - shortPanelSide / 5;
+        double drawAreaSide = shortPanelSide - (double)(shortPanelSide) / 5;
         Point center = new Point(shortPanelSide / 2, shortPanelSide - shortPanelSide / 2);
         double radius = drawAreaSide / 2;
         double radiusOfSquare = radius / 9;
@@ -186,10 +186,8 @@ public class BoardPanel extends JPanel implements MouseListener {
 
     public void checkIfSquareIsClicked(MouseEvent e, List<Square> squareList) {
         for (Square square : squareList) {
-            if (square.contains(e.getX(), e.getY())) {
-                if (e.getButton() == 1) {
-                    SquareClicked(square);
-                }
+            if (square.contains(e.getX(), e.getY()) && e.getButton() == 1) {
+                SquareClicked(square);
             }
         }
     }
@@ -284,7 +282,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 
     private class Square extends Ellipse2D.Double {
 
-        public String name;
+        public final String name;
 
         public String getName() {
             return name;
@@ -326,7 +324,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                 finishSquares = new ArrayList<>();
                 occupiedSquares = new ArrayList<>();
 
-                this.startSquare = startSquare;
+                //this.startSquare = startSquare;
                 playerColor = color;
 
                 for (int i = 0; i < 4; i++) {
@@ -349,7 +347,6 @@ public class BoardPanel extends JPanel implements MouseListener {
             private final List<Square> homeSquares;
             private final List<Square> finishSquares;
             private List<String> occupiedSquares;
-            private final String startSquare;
         }
     }
 

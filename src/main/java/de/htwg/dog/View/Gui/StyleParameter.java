@@ -21,5 +21,9 @@ public final class StyleParameter {
     final static Color colorSelectedS1 = Color.MAGENTA;
     final static Color colorSelectedS2 = Color.RED;
     final static Color colorBorder = Color.BLACK;
+    
+    private StyleParameter(){
+        
+    }
 
 }

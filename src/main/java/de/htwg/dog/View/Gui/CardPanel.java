@@ -27,7 +27,14 @@ public final class CardPanel extends JPanel implements MouseListener {
 
     List<ActionListener> listeners = new ArrayList<>();
     private List<Card> cards = new ArrayList<>();
+    private static final Images images = new Images();
+    private Card selectedCard;
 
+    public CardPanel() {
+        setBackground(Color.lightGray);
+        addMouseListener(this);
+    }
+    
     public void setCards(List<String> cards) {
         this.cards = new ArrayList<>();
         for (String card : cards) {
@@ -37,15 +44,6 @@ public final class CardPanel extends JPanel implements MouseListener {
                 selectedCard = c;
             }
         }
-    }
-
-    private final Images images = new Images();
-    private Card selectedCard;
-
-    public CardPanel() {
-
-        setBackground(Color.lightGray);
-        addMouseListener(this);
     }
 
     @Override
@@ -164,7 +162,7 @@ public final class CardPanel extends JPanel implements MouseListener {
         public Card(String value) {
             this.value = value;
 
-            this.image = images.images.get(value);
+            this.image = images.imageList.get(value);
             this.rect = new Rectangle2D.Double(0, 0, image.getWidth(), image.getHeight());
         }
     }

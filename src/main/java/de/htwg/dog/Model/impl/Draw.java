@@ -33,10 +33,9 @@ public class Draw {
             if (from.getName().equals(square.getName())) {
 
                 //from home to start square
-                if (from.getType() == Square.Type.HOME && to == player.getStartSquare()) {
-                    if (card == ValueEnum.ACE || card == ValueEnum.KING) {
-                        return true;
-                    }
+                if (from.getType() == Square.Type.HOME && to == player.getStartSquare() && 
+                        (card == ValueEnum.ACE || card == ValueEnum.KING)) {
+                    return true;
                 }
 
                 //from standart to standart square
@@ -66,9 +65,10 @@ public class Draw {
     }
     
     public static boolean fromStandartToStandart(Square from, Square to, int valueToGo) {
-        if(valueToGo < 0) valueToGo+=48;
+        int actualValueToGo = valueToGo;
+        if(valueToGo < 0) actualValueToGo+=48;
         int difference = Int.getDifference(from.getNumber(), to.getNumber());
-        return difference == valueToGo;
+        return difference == actualValueToGo;
     }
 
     public static boolean fromNormalToFinish(Square from, Square to, int valueToGo, Player player) {

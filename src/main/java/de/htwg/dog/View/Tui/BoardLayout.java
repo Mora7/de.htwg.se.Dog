@@ -41,4 +41,7 @@ public final class BoardLayout {
                 + "   | %3s  | %3s  | %3s  | %3s  |                                         | %3s  | %3s  | %3s  | %3s  |   \n\n";
 
     }
+    
+        private BoardLayout(){
+        }
     }
