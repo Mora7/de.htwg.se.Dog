@@ -6,14 +6,15 @@
 package de.htwg.dog.View.Tui;
 
 import de.htwg.dog.Controller.Controller;
-import de.htwg.dog.Model.impl.Player;
 import de.htwg.dog.Model.impl.Game;
+import de.htwg.dog.Model.impl.Player;
 import de.htwg.dog.View.I_UI;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Formatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,7 +84,10 @@ public class Tui implements I_UI {
             }
         }
 
-         LOGGER.info(BoardLayout.get() + "," + Arrays.toString(tokens.toArray()) + "\n");
+        StringBuilder sb = new StringBuilder();
+        Formatter fm = new Formatter(sb);
+        fm.format(BoardLayout.get(), tokens.toArray());
+        LOGGER.info(sb.toString());
     }
     
     @Override
@@ -142,9 +146,9 @@ public class Tui implements I_UI {
     
     public void printTUI() {
         paintBoard();
-        LOGGER.info("Player: " + currentPlayer + "\n");
-        LOGGER.info("Karten: " + cards + "\n");
-        LOGGER.info(info + "\n"+ "\n");
+        LOGGER.info("Player: " + currentPlayer);
+        LOGGER.info("Karten: " + cards);
+        LOGGER.info(info + "\n");
         LOGGER.info("Wählen Sie, getrennt mit einem Komma, eine Karte, "
                 + "ein Startfeld und ein Zielfeld (Bsp. \"SPADE_4,S1,S5\"), \n"
                 + "Karten verwerfen = \"v\", Neues Spiel = \"neu\", Spiel beenden = \"exit\": ");}

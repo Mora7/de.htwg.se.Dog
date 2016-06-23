@@ -38,6 +38,8 @@ public class Dog {
         while (continu) {
            continu = tui.ProcessInput(scanner.next());
         } 
+        
+        gui.dispose();
     }
     
 }
