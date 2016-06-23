@@ -23,6 +23,9 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.Priority;
+
 /**
  *
  * @author kev
@@ -33,15 +36,13 @@ public class BoardPanel extends JPanel implements MouseListener {
     private Square selectedSquare1;
     private Square selectedSquare2;
     private final Board board = new Board();
-    private final double scale;
+    private Logger logger = Logger.getLogger("de.htwg.dog.View.Gui.Boardpanel");
 
     public BoardPanel() {
 
         setBackground(Color.lightGray);
         addMouseListener(this);
         setDoubleBuffered(true);
-
-        scale = this.getWidth() / 373.0;
     }
 
     public Board getBoard() {
@@ -98,7 +99,7 @@ public class BoardPanel extends JPanel implements MouseListener {
             g2d.drawImage(image, center.x - image.getWidth() / 2, center.y - image.getHeight() / 2, this);
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            logger.log(Priority.ERROR, ex.getMessage());
         }
     }
 
@@ -113,13 +114,13 @@ public class BoardPanel extends JPanel implements MouseListener {
         double step = 2 * Math.PI / 48;
         double x, y;
         int shortPanelSide = Math.min(getWidth(), getHeight());
-        int drawAreaSide = shortPanelSide - shortPanelSide / 5;
+        double drawAreaSide = shortPanelSide - shortPanelSide / 5;
         Point center = new Point(shortPanelSide / 2, shortPanelSide - shortPanelSide / 2);
         double radius = drawAreaSide / 2;
         double radiusOfSquare = radius / 9;
         int thickness = (int) Math.round(radiusOfSquare / 6);
 
-        drawBackgorundImage(g2d, center, drawAreaSide);
+        drawBackgorundImage(g2d, center, (int)drawAreaSide);
 
         for (Square square : board.squares) {
 
