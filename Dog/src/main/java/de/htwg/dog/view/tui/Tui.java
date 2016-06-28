@@ -7,7 +7,7 @@ package de.htwg.dog.view.tui;
 
 import com.google.inject.Inject;
 import de.htwg.dog.controller.IController;
-import de.htwg.dog.view.I_UI;
+import de.htwg.dog.view.IView;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
  *
  * @author kev
  */
-public class Tui implements I_UI {
+public class Tui implements IView {
 
     private static final Logger LOGGER = Logger.getLogger("de.htwg.dog.View.Tui.Tui");
     
@@ -106,7 +106,7 @@ public class Tui implements I_UI {
         this.info = info;
     }
 
-    public Boolean ProcessInput(String line) {
+    public Boolean processInput(String line) {
 
         if ("neu".equals(line)) {
             contr.startGame();

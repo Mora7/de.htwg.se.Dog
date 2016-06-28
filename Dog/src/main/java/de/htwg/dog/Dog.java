@@ -42,7 +42,7 @@ public class Dog {
         boolean continu = true;
         Scanner scanner = new Scanner(System.in);
         while (continu) {
-           continu = tui.ProcessInput(scanner.next());
+           continu = tui.processInput(scanner.next());
         } 
         
         gui.dispose();

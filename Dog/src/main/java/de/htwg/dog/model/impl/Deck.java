@@ -14,11 +14,14 @@ import java.util.List;
  */
 public class Deck {
 
+    List<Card> deckOfCards = new ArrayList<>();
+    List<Card> undealedCards = new ArrayList<>();
+    
     public Deck() {
-        GenerateDeck();
+        generateDeck();
     }
 
-    private void GenerateDeck() {
+    private void generateDeck() {
 
         for (SuitEnum en : SuitEnum.values()) {
             for (ValueEnum e : ValueEnum.values()) {
@@ -28,7 +31,4 @@ public class Deck {
 
         undealedCards.addAll(deckOfCards);
     }
-
-    List<Card> deckOfCards = new ArrayList<>();
-    List<Card> undealedCards = new ArrayList<>();
 }

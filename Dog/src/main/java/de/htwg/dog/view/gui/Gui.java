@@ -7,7 +7,7 @@ package de.htwg.dog.view.gui;
 
 import com.google.inject.Inject;
 import de.htwg.dog.controller.IController;
-import de.htwg.dog.view.I_UI;
+import de.htwg.dog.view.IView;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -40,7 +40,7 @@ import javax.swing.plaf.basic.BasicSplitPaneUI;
  *
  * @author kev
  */
-public final class Gui extends JFrame implements I_UI {
+public final class Gui extends JFrame implements IView {
 
     JSplitPane splitPaneV;
     JSplitPane splitPaneH;

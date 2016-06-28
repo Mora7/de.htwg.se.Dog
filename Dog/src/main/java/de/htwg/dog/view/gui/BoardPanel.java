@@ -268,13 +268,13 @@ public class BoardPanel extends JPanel {
     private class Square extends Ellipse2D.Double {
 
         public final String name;
+        
+        public Square(String name) {
+            this.name = name;
+        }
 
         public String getName() {
             return name;
-        }
-
-        public Square(String name) {
-            this.name = name;
         }
         
         @Override

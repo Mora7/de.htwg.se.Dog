@@ -12,6 +12,9 @@ package de.htwg.dog.view.tui;
  */
 public final class BoardLayout {
     
+    private BoardLayout(){
+    }
+    
     public static String get(){
         
     return "\n\n   | %3s  | %3s  | %3s  | %3s  |                                         | %3s  | %3s  | %3s  | %3s  |   \n"
@@ -41,7 +44,4 @@ public final class BoardLayout {
                 + "   | %3s  | %3s  | %3s  | %3s  |                                         | %3s  | %3s  | %3s  | %3s  |   \n\n";
 
     }
-    
-        private BoardLayout(){
-        }
-    }
+}

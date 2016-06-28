@@ -96,7 +96,8 @@ public final class CardPanel extends JPanel {
     }
     
     public String getSelectedCard() {
-        if(selectedCard == null) return "";
+        if(selectedCard == null) 
+            return "";
         else return selectedCard.getValue();
     }
 
@@ -106,6 +107,13 @@ public final class CardPanel extends JPanel {
         private BufferedImage image = null;
         private Rectangle2D rect;
         private String value;
+        
+        public Card(String value) {
+            this.value = value;
+
+            this.image = Images.imageList.get(value);
+            this.rect = new Rectangle2D.Double(0, 0, image.getWidth(), image.getHeight());
+        }
 
         public BufferedImage getImage() {
             return image;
@@ -137,13 +145,6 @@ public final class CardPanel extends JPanel {
 
         public Rectangle2D getRect() {
             return rect;
-        }
-
-        public Card(String value) {
-            this.value = value;
-
-            this.image = Images.imageList.get(value);
-            this.rect = new Rectangle2D.Double(0, 0, image.getWidth(), image.getHeight());
         }
     }
 }

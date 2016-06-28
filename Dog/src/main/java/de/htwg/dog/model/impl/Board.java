@@ -17,16 +17,16 @@ public class Board {
 
     private final List<ISquare> squares;
 
-    public List<ISquare> getSquares() {
-        return squares;
-    }
-    
     public Board() {
         this.squares = new ArrayList<>();
 
         for (int i = 0; i < 48; i++) {
             squares.add(new Square("S" + i));
         }
+    }
+    
+    public List<ISquare> getSquares() {
+        return squares;
     }
     
     public ISquare getSquareByName(String name) {
