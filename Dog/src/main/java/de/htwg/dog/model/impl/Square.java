@@ -18,16 +18,11 @@ public final class Square {
 
     private String name;
     private boolean isOccupied;
-    private Player occupiedBy;
     private Type type;
     private int number;
     
     public Square(String name) {
         setName(name);
-    }
-
-    public Player occupiedBy(){
-        return occupiedBy;
     }
     
     public boolean isOccupied() {
