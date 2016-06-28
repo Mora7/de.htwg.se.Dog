@@ -97,7 +97,7 @@ public class BoardPanel extends JPanel implements MouseListener {
             g2d.drawImage(image, center.x - image.getWidth() / 2, center.y - image.getHeight() / 2, this);
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         } catch (IOException ex) { 
-            LOGGER.info(ex.getMessage()); 
+            LOGGER.info(ex); 
         }
     }
 

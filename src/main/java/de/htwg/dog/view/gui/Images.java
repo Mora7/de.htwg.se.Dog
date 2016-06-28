@@ -37,7 +37,7 @@ public class Images {
                 try {
                     imageList.put(name, ImageIO.read(f));
                 } catch (IOException ex) { 
-                    LOGGER.info(ex.getMessage()); 
+                    LOGGER.info(ex); 
                 }
             }
         }

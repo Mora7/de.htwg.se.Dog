@@ -52,7 +52,7 @@ public class Tui implements I_UI {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         } catch (IOException | InterruptedException ex) { 
-            LOGGER.info(ex.getMessage());
+            LOGGER.info(ex);
         }
 
         List<String> squares = new ArrayList<>();
