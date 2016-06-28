@@ -1,0 +1,45 @@
+plugins {
+  id "org.sonarqube" version "2.0.1"
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "sonar-runner"
+apply plugin: "org.sonarqube"
+apply plugin: "maven"
+apply plugin: "jacoco"
+
+idea {
+    project {
+        //if you want to set specific jdk and language level
+        jdkName = '1.8'
+        languageLevel = '1.8'
+    }
+}
+
+dependencies {
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api',  version: '2.2'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.2'
+    compile 'log4j:log4j:1.2.9'
+    compile group: 'com.google.inject',        name: 'guice',      version: '3.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
+    testCompile 'junit:junit:4.10'
+}
+
+if (!hasProperty('mainClass')) {
+    ext.mainClass = 'de.htwg.dog.Dog'
+}
+  
+sonarqube {
+    properties {
+    property "sonar.projectName", "Dog"
+    property "sonar.projectKey", "de.htwg.se.dog"
+    property "sonar.projectVersion", "0.1"
+    property "sonar.binaries", "build/classes"
+    property "sonar.java.coveragePlugin", "jacoco"
+  }
+}
