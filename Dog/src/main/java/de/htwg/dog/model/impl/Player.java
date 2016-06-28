@@ -44,26 +44,32 @@ public class Player implements IPlayer {
         }
     }
     
+    @Override
     public List<ICard> getCards() {
         return cards;
     }
 
+    @Override
     public List<ISquare> getFinishSquares() {
         return finishSquares;
     }
 
+    @Override
     public List<ISquare> getHomeSquares() {
         return homeSquares;
     }
 
+    @Override
     public int getPlayerNumber() {
         return playerNumber;
     }
 
+    @Override
     public ISquare getStartSquare() {
         return startSquare;
     }
 
+    @Override
     public ICard getCardByName(String name) {
         for (ICard card : cards) {
             if (card.getName().equals(name)) {
@@ -74,6 +80,7 @@ public class Player implements IPlayer {
         return null;
     }
 
+    @Override
     public List<ISquare> getOccupiedSquares() {
         return occupiedSquares;
     }

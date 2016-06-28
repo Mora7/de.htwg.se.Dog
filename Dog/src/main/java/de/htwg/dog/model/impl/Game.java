@@ -177,8 +177,7 @@ public final class Game implements IModel {
                 return false;
             }
 
-            if (from.isOccupied() && 
-                    Draw.isDrawAllowed(from, to, 
+            if (from.isOccupied() && Draw.isDrawAllowed(from, to, 
                             ValueEnum.valueOf(selectedCard.getValue()), currentPlayer)) {
 
                     for(IPlayer player : players){
@@ -198,7 +197,6 @@ public final class Game implements IModel {
                                             break;
                                     }
                                 }
-
                             }
                         }
                     }

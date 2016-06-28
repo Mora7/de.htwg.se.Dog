@@ -315,3 +315,143 @@ INFO main de.htwg.dog.View.Tui.Tui - Player 0 hat die Karten verworfen.
 
 INFO main de.htwg.dog.View.Tui.Tui - Wählen Sie, getrennt mit einem Komma, eine Karte, ein Startfeld und ein Zielfeld (Bsp. "SPADE_4,S1,S5"), 
 Karten verwerfen = "v", Neues Spiel = "neu", Spiel beenden = "exit": 
+INFO main de.htwg.dog.View.Tui.Tui - 
+
+   |      |      |      |      |                                         |      |      |      |      |   
+   | H3P0 | H2P0 | H1P0 | H0P0 |                                         | H0P1 | H1P1 | H2P1 | H3P1 |   
+                            |                                               |                            
+          ------------------|-----------------------------------------------|------------------          
+          |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |          
+          |S44|S45|S46|S47|S0 |S1 |S2 |S3 |S4 |S5 |S6 |S7 |S8 |S9 |S10|S11|S12|S13|S14|S15|S16|          
+----------------------------|-----------------------------------------------|--------------------------------
+|         |                 |                                               |                 |         |
+|      S43|                 |                                               |                 |S17      |
+|         |           |F0P0|F1P0|F2P0|F3P0|                   |F3P1|F2P1|F1P1|F0P1|           |         |
+|----------           |    |    |    |    |                   |    |    |    |    |           ----------|
+|         |                                                                                   |         |
+|      S42|                                                                                   |S18      |
+|         |                                                                                   |         |
+|----------           |    |    |    |    |                   |    |    |    |    |           ----------|
+|         |           |F0P3|F0P3|F0P3|F0P3|                   |F3P2|F2P2|F1P2|F0P2|           |         |
+|      S41|                 |                                               |                 |S19      |
+|         |                 |                                               |                 |         |
+----------------------------|-----------------------------------------------|----------------------------
+          |S40|S39|S38|S37|S36|S35|S34|S33|S32|S31|S30|S29|S28|S27|S26|S25|S24|S23|S22|S21|S20|          
+          |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |          
+          ------------------|-----------------------------------------------|------------------          
+                            |                                               |                            
+   | H3P3 | H2P3 | H1P3 | H0P3 |                                         | H0P2 | H1P2 | H2P2 | H3P2 |   
+   |      |      |      |      |                                         |      |      |      |      |   
+
+
+INFO main de.htwg.dog.View.Tui.Tui - Player: 
+INFO main de.htwg.dog.View.Tui.Tui - Karten: [ ]
+INFO main de.htwg.dog.View.Tui.Tui - 
+
+INFO main de.htwg.dog.View.Tui.Tui - Wählen Sie, getrennt mit einem Komma, eine Karte, ein Startfeld und ein Zielfeld (Bsp. "SPADE_4,S1,S5"), 
+Karten verwerfen = "v", Neues Spiel = "neu", Spiel beenden = "exit": 
+INFO main de.htwg.dog.View.Tui.Tui - 
+
+   |  P0  |  P0  |  P0  |  P0  |                                         |  P1  |  P1  |  P1  |  P1  |   
+   | H3P0 | H2P0 | H1P0 | H0P0 |                                         | H0P1 | H1P1 | H2P1 | H3P1 |   
+                            |                                               |                            
+          ------------------|-----------------------------------------------|------------------          
+          |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |          
+          |S44|S45|S46|S47|S0 |S1 |S2 |S3 |S4 |S5 |S6 |S7 |S8 |S9 |S10|S11|S12|S13|S14|S15|S16|          
+----------------------------|-----------------------------------------------|--------------------------------
+|         |                 |                                               |                 |         |
+|      S43|                 |                                               |                 |S17      |
+|         |           |F0P0|F1P0|F2P0|F3P0|                   |F3P1|F2P1|F1P1|F0P1|           |         |
+|----------           |    |    |    |    |                   |    |    |    |    |           ----------|
+|         |                                                                                   |         |
+|      S42|                                                                                   |S18      |
+|         |                                                                                   |         |
+|----------           |    |    |    |    |                   |    |    |    |    |           ----------|
+|         |           |F0P3|F0P3|F0P3|F0P3|                   |F3P2|F2P2|F1P2|F0P2|           |         |
+|      S41|                 |                                               |                 |S19      |
+|         |                 |                                               |                 |         |
+----------------------------|-----------------------------------------------|----------------------------
+          |S40|S39|S38|S37|S36|S35|S34|S33|S32|S31|S30|S29|S28|S27|S26|S25|S24|S23|S22|S21|S20|          
+          |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |          
+          ------------------|-----------------------------------------------|------------------          
+                            |                                               |                            
+   | H3P3 | H2P3 | H1P3 | H0P3 |                                         | H0P2 | H1P2 | H2P2 | H3P2 |   
+   |  P3  |  P3  |  P3  |  P3  |                                         |  P2  |  P2  |  P2  |  P2  |   
+
+
+INFO main de.htwg.dog.View.Tui.Tui - Player: Player 0
+INFO main de.htwg.dog.View.Tui.Tui - Karten: [CLUB_2, CLUB_4, DIAMOND_2, HEART_A, SPADE_4, SPADE_J]
+INFO main de.htwg.dog.View.Tui.Tui - Neues Spiel gestartet.
+
+INFO main de.htwg.dog.View.Tui.Tui - Wählen Sie, getrennt mit einem Komma, eine Karte, ein Startfeld und ein Zielfeld (Bsp. "SPADE_4,S1,S5"), 
+Karten verwerfen = "v", Neues Spiel = "neu", Spiel beenden = "exit": 
+INFO main de.htwg.dog.View.Tui.Tui - 
+
+   |      |      |      |      |                                         |      |      |      |      |   
+   | H3P0 | H2P0 | H1P0 | H0P0 |                                         | H0P1 | H1P1 | H2P1 | H3P1 |   
+                            |                                               |                            
+          ------------------|-----------------------------------------------|------------------          
+          |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |          
+          |S44|S45|S46|S47|S0 |S1 |S2 |S3 |S4 |S5 |S6 |S7 |S8 |S9 |S10|S11|S12|S13|S14|S15|S16|          
+----------------------------|-----------------------------------------------|--------------------------------
+|         |                 |                                               |                 |         |
+|      S43|                 |                                               |                 |S17      |
+|         |           |F0P0|F1P0|F2P0|F3P0|                   |F3P1|F2P1|F1P1|F0P1|           |         |
+|----------           |    |    |    |    |                   |    |    |    |    |           ----------|
+|         |                                                                                   |         |
+|      S42|                                                                                   |S18      |
+|         |                                                                                   |         |
+|----------           |    |    |    |    |                   |    |    |    |    |           ----------|
+|         |           |F0P3|F0P3|F0P3|F0P3|                   |F3P2|F2P2|F1P2|F0P2|           |         |
+|      S41|                 |                                               |                 |S19      |
+|         |                 |                                               |                 |         |
+----------------------------|-----------------------------------------------|----------------------------
+          |S40|S39|S38|S37|S36|S35|S34|S33|S32|S31|S30|S29|S28|S27|S26|S25|S24|S23|S22|S21|S20|          
+          |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |          
+          ------------------|-----------------------------------------------|------------------          
+                            |                                               |                            
+   | H3P3 | H2P3 | H1P3 | H0P3 |                                         | H0P2 | H1P2 | H2P2 | H3P2 |   
+   |      |      |      |      |                                         |      |      |      |      |   
+
+
+INFO main de.htwg.dog.View.Tui.Tui - Player: 
+INFO main de.htwg.dog.View.Tui.Tui - Karten: [ ]
+INFO main de.htwg.dog.View.Tui.Tui - 
+
+INFO main de.htwg.dog.View.Tui.Tui - Wählen Sie, getrennt mit einem Komma, eine Karte, ein Startfeld und ein Zielfeld (Bsp. "SPADE_4,S1,S5"), 
+Karten verwerfen = "v", Neues Spiel = "neu", Spiel beenden = "exit": 
+INFO main de.htwg.dog.View.Tui.Tui - 
+
+   |  P0  |  P0  |  P0  |  P0  |                                         |  P1  |  P1  |  P1  |  P1  |   
+   | H3P0 | H2P0 | H1P0 | H0P0 |                                         | H0P1 | H1P1 | H2P1 | H3P1 |   
+                            |                                               |                            
+          ------------------|-----------------------------------------------|------------------          
+          |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |          
+          |S44|S45|S46|S47|S0 |S1 |S2 |S3 |S4 |S5 |S6 |S7 |S8 |S9 |S10|S11|S12|S13|S14|S15|S16|          
+----------------------------|-----------------------------------------------|--------------------------------
+|         |                 |                                               |                 |         |
+|      S43|                 |                                               |                 |S17      |
+|         |           |F0P0|F1P0|F2P0|F3P0|                   |F3P1|F2P1|F1P1|F0P1|           |         |
+|----------           |    |    |    |    |                   |    |    |    |    |           ----------|
+|         |                                                                                   |         |
+|      S42|                                                                                   |S18      |
+|         |                                                                                   |         |
+|----------           |    |    |    |    |                   |    |    |    |    |           ----------|
+|         |           |F0P3|F0P3|F0P3|F0P3|                   |F3P2|F2P2|F1P2|F0P2|           |         |
+|      S41|                 |                                               |                 |S19      |
+|         |                 |                                               |                 |         |
+----------------------------|-----------------------------------------------|----------------------------
+          |S40|S39|S38|S37|S36|S35|S34|S33|S32|S31|S30|S29|S28|S27|S26|S25|S24|S23|S22|S21|S20|          
+          |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |          
+          ------------------|-----------------------------------------------|------------------          
+                            |                                               |                            
+   | H3P3 | H2P3 | H1P3 | H0P3 |                                         | H0P2 | H1P2 | H2P2 | H3P2 |   
+   |  P3  |  P3  |  P3  |  P3  |                                         |  P2  |  P2  |  P2  |  P2  |   
+
+
+INFO main de.htwg.dog.View.Tui.Tui - Player: Player 0
+INFO main de.htwg.dog.View.Tui.Tui - Karten: [CLUB_6, CLUB_JOKER, CLUB_K, HEART_A, SPADE_10, SPADE_2]
+INFO main de.htwg.dog.View.Tui.Tui - Neues Spiel gestartet.
+
+INFO main de.htwg.dog.View.Tui.Tui - Wählen Sie, getrennt mit einem Komma, eine Karte, ein Startfeld und ein Zielfeld (Bsp. "SPADE_4,S1,S5"), 
+Karten verwerfen = "v", Neues Spiel = "neu", Spiel beenden = "exit": 
