@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package de.htwg.dog.model.impl;
 
 import org.junit.Before;
@@ -11,22 +12,37 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author a1337
+ * @author kev
  */
 public class CardTest {
     
-    public CardTest() {
-    }
+    Card card;
     
     @Before
     public void setUp() {
+        card = new Card(ValueEnum.ACE, SuitEnum.CLUB);
     }
 
     @Test
     public void testChangeCard() {
-
-        assertEquals(true, true);
+        card.changeCard(ValueEnum.EIGHT, SuitEnum.DIAMOND);
+        assertEquals(card.getValue(), ValueEnum.EIGHT);
+        assertEquals(card.getSuit(), SuitEnum.DIAMOND);
     }
-  
+
+    @Test
+    public void testGetName() {
+        assertEquals(card.getName(), SuitEnum.CLUB.getName() + "_" + ValueEnum.ACE.getName());
+    }
+
+    @Test
+    public void testGetValue() {
+        assertEquals(card.getValue(), ValueEnum.ACE);
+    }
+
+    @Test
+    public void testGetSuit() {
+        assertEquals(card.getSuit(), SuitEnum.CLUB);
+    }
     
 }
