@@ -18,7 +18,7 @@ public class Player {
     private final int playerNumber;
     private final List<Square> homeSquares;
     private final List<Square> finishSquares;
-    private List<Square> occupiedSquares;
+    private final List<Square> occupiedSquares;
     private final Square startSquare;
     
     public Player(Square startSquare, int number) {
