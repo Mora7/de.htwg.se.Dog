@@ -5,9 +5,8 @@
  */
 package de.htwg.dog.view.tui;
 
-import de.htwg.dog.controller.Controller;
-import de.htwg.dog.model.impl.Game;
-import de.htwg.dog.model.impl.Player;
+import com.google.inject.Inject;
+import de.htwg.dog.controller.IController;
 import de.htwg.dog.view.I_UI;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -29,25 +28,22 @@ public class Tui implements I_UI {
 
     private static final Logger LOGGER = Logger.getLogger("de.htwg.dog.View.Tui.Tui");
     
-    private final Controller contr;
-    private final Game game;
+    private final IController contr;
     private String currentPlayer;
     private final List<String> cards;
     private String info = "";
 
-    public Tui(Controller controller, Game model) {
+    @Inject
+    public Tui(final IController controller) {
         this.currentPlayer = "";
         this.cards = new ArrayList<>();
         this.cards.add(" ");
 
         this.contr = controller;
-        this.game = model;
-
-        controller.addUpdateListener((ActionEvent e) -> update());
+        this.contr.addUpdateListener((ActionEvent e) -> update());
     }
     
     public void paintBoard() {
-
 
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -65,9 +61,12 @@ public class Tui implements I_UI {
 
         Map<String, String> mapOccupiedSquares = new HashMap<>();
 
-        for (Player player : game.getPlayers()) {
-            for (String occupiedSquare : player.getStringOccupiedSquares()) {
-                mapOccupiedSquares.put(occupiedSquare, "P" + player.getPlayerNumber());
+        if(!contr.getPlayerNos().isEmpty())
+        {
+            for(int playerNo : contr.getPlayerNos()) {
+                for(String occupiedSquare : contr.getOccupiedSquares(playerNo)){
+                    mapOccupiedSquares.put(occupiedSquare, "P" + playerNo);
+                }
             }
         }
 
@@ -82,6 +81,7 @@ public class Tui implements I_UI {
                 tokens.add(token);
             }
         }
+        
 
         StringBuilder sb = new StringBuilder();
         Formatter fm = new Formatter(sb);

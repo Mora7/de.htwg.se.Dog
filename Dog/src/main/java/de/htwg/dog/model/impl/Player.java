@@ -15,7 +15,7 @@ import java.util.List;
 public class Player {
     
     private final List<Card> cards = new ArrayList<>();
-    private int playerNumber;
+    private final int playerNumber;
     private final List<Square> homeSquares;
     private final List<Square> finishSquares;
     private List<Square> occupiedSquares;
@@ -73,25 +73,5 @@ public class Player {
 
     public List<Square> getOccupiedSquares() {
         return occupiedSquares;
-    }
-
-    public List<String> getStringCards() {
-        List<String> l = new ArrayList();
-
-        for (Card c : cards) {
-            l.add(c.getName());
-        }
-
-        return l;
-    }
-
-    public List<String> getStringOccupiedSquares() {
-        List<String> l = new ArrayList();
-
-        for (Square s : occupiedSquares) {
-            l.add(s.getName());
-        }
-
-        return l;
     }
 }

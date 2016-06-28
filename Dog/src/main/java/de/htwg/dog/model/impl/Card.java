@@ -29,7 +29,7 @@ public class Card {
         this.suit = suit;
     }
 
-    String getName() {
+    public String getName() {
         return suit.getName()+ "_" + value.getName();
     }
 

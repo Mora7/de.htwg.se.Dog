@@ -5,9 +5,8 @@
  */
 package de.htwg.dog.view.gui;
 
-import de.htwg.dog.controller.Controller;
-import de.htwg.dog.model.impl.Game;
-import de.htwg.dog.model.impl.Player;
+import com.google.inject.Inject;
+import de.htwg.dog.controller.IController;
 import de.htwg.dog.view.I_UI;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -57,15 +56,13 @@ public final class Gui extends JFrame implements I_UI {
     JLabel label;
     JTextField infoBox;
 
-    Controller contr;
-    Game game;
+    IController contr;
     
-    public Gui(Controller contr, Game model) {
+    @Inject
+    public Gui(final IController contr) {
 
         this.contr=contr;
-        this.game=model;
-        
-        contr.addUpdateListener((ActionEvent e) -> update());
+        this.contr.addUpdateListener((ActionEvent e) -> update());
         
         setTitle("Dog");
 
@@ -192,9 +189,9 @@ public final class Gui extends JFrame implements I_UI {
         String currentPlayer = "Player " + contr.getCurrentPlayerNo();
         label.setText(currentPlayer);
         
-        for (Player player : game.getPlayers()) {
-            boardPanel.getBoard().getPlayers().get(player.getPlayerNumber())
-                    .setOccupiedSquares(player.getStringOccupiedSquares());
+        for(int playerNo : contr.getPlayerNos()) {
+            boardPanel.getBoard().getPlayers().get(playerNo)
+                    .setOccupiedSquares(contr.getOccupiedSquares(playerNo));
         }
         
         if(contr.getWinnerNo() >= 0){

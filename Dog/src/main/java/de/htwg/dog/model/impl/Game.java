@@ -16,17 +16,13 @@ import java.util.Random;
  */
 public final class Game implements IModel {
 
-    List<Player> players;
+    List<Player> players = new ArrayList<>();
     Deck deck;
     int cardsPerHand;
     Player currentPlayer;
     Board board;
     String info = "";
     Player winner;
-    
-    public Game() {
-        start();
-    }
     
     @Override
     public String getInfo(){
@@ -137,6 +133,16 @@ public final class Game implements IModel {
     @Override
     public Card getCard(String name){
         return currentPlayer.getCardByName(name);
+    }
+    
+    @Override
+    public Player getPlayer(int playerNo) {
+        for (Player p : players) {
+            if (p.getPlayerNumber() == playerNo) {
+                return p;
+            }
+        }
+        return null;
     }
 
     @Override

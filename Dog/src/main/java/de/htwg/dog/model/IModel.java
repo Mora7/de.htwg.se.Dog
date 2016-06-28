@@ -17,6 +17,7 @@ import java.util.List;
 public interface IModel {
 
     public List<Player> getPlayers();
+    public Player getPlayer(int playerNo);
     public Player getCurrentPlayer();
 
     public Card getCard(String name);
