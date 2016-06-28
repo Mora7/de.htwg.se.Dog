@@ -22,7 +22,7 @@ import org.apache.log4j.PropertyConfigurator;
  */
 public class Dog {
     
-    public Dog() {
+    private Dog() {
     }
     
     /**
