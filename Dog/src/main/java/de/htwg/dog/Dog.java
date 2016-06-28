@@ -22,6 +22,9 @@ import org.apache.log4j.PropertyConfigurator;
  */
 public class Dog {
     
+    public Dog() {
+    }
+    
     /**
      * @param args the command line arguments
      */
