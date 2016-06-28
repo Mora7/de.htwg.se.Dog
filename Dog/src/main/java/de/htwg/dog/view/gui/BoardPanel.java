@@ -267,7 +267,7 @@ public class BoardPanel extends JPanel {
 
     private class Square extends Ellipse2D.Double {
 
-        public final String name;
+        private final String name;
         
         public Square(String name) {
             this.name = name;
@@ -275,6 +275,23 @@ public class BoardPanel extends JPanel {
 
         public String getName() {
             return name;
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+            if (!super.equals(obj))
+                return false;
+
+            Square fobj = (Square) obj;
+            if (name.equals(fobj.getName()))
+                return true;
+            
+            return false;
+        }
+        
+        @Override
+        public int hashCode() {
+            return super.hashCode() + name.hashCode();
         }
     }
 
