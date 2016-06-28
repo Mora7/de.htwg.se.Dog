@@ -276,19 +276,6 @@ public class BoardPanel extends JPanel {
         public String getName() {
             return name;
         }
-        
-        @Override
-        public boolean equals(Object obj) {
-            if (! super.equals(obj))
-                return false;
-        
-            return true;
-        }
-        
-        @Override
-        public int hashCode() {
-            return super.hashCode();
-        }
     }
 
     public class Board {

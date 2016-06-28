@@ -26,6 +26,7 @@ import java.util.List;
 public class Controller implements IController {
 
     private final IModel model;
+    List<ActionListener> updateListener;
 
     @Inject
     public Controller(IModelFactory modelFactory) {
@@ -33,8 +34,6 @@ public class Controller implements IController {
         this.model = modelFactory.create();
         updateListener = new ArrayList<>();
     }
-
-    List<ActionListener> updateListener;
     
     @Override
     public void addUpdateListener(ActionListener actionListener) {
@@ -77,8 +76,10 @@ public class Controller implements IController {
     
     @Override
     public int getWinnerNo(){
-        if(model.getWinner() == null) return -1;
-        else return model.getWinner().getPlayerNumber();
+        if(model.getWinner() == null) 
+            return -1;
+        else 
+            return model.getWinner().getPlayerNumber();
     }
     
     @Override
