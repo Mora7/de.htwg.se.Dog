@@ -32,7 +32,7 @@ public class CardTest {
 
     @Test
     public void testGetName() {
-        assertEquals(card.getName(), SuitEnum.CLUB.getName() + "_" + ValueEnum.ACE.getName());
+        assertEquals(card.getName(), SuitEnum.CLUB.getName()+ "_" + ValueEnum.ACE.getName());
     }
 
     @Test

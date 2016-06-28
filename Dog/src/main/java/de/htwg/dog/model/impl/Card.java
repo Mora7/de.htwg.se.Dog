@@ -30,7 +30,7 @@ public class Card {
     }
 
     String getName() {
-        return suit.getName() + "_" + value.getName();
+        return suit.getName()+ "_" + value.getName();
     }
 
     ValueEnum getValue() {

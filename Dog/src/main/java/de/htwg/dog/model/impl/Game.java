@@ -25,7 +25,7 @@ public final class Game implements IModel {
     Player winner;
     
     public Game() {
-        Start();
+        start();
     }
     
     @Override
@@ -33,7 +33,7 @@ public final class Game implements IModel {
         return info;
     }
 
-    void Start() {
+    private void start() {
        board = new Board();
        
         players = new ArrayList<>();
@@ -105,12 +105,6 @@ public final class Game implements IModel {
 
             currentPlayer = nextPlayer;
         }
-    }
-
-    public void setOccupiedSquares() {
-        for (Player player : players)
-            for (Square square : player.getOccupiedSquares())
-                square.setOccupation(true);
     }
 
     @Override
@@ -220,7 +214,7 @@ public final class Game implements IModel {
         return false;
     }
 
-    public boolean checkVictoryConditions() {
+    private boolean checkVictoryConditions() {
 
         boolean hasWon = true;
 
@@ -237,6 +231,6 @@ public final class Game implements IModel {
 
     @Override
     public void startGame() {
-        this.Start();
+        this.start();
     }
 }

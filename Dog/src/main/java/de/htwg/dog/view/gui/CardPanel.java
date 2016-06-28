@@ -10,8 +10,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -23,16 +23,30 @@ import javax.swing.JPanel;
  *
  * @author kev
  */
-public final class CardPanel extends JPanel implements MouseListener {
+public final class CardPanel extends JPanel {
 
     List<ActionListener> listeners = new ArrayList<>();
     private List<Card> cards = new ArrayList<>();
-    private final Images images = new Images();
     private Card selectedCard;
 
     public CardPanel() {
         setBackground(Color.lightGray);
-        addMouseListener(this);
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) { 
+                if (e.getButton() == 1) {
+                    ListIterator iter = cards.listIterator(cards.size());
+                    while (iter.hasPrevious()) {
+                        Card card = (Card) iter.previous();
+                        if (card.getRect().contains(e.getX(), e.getY())) {
+                            selectedCard = card;
+                            repaint();
+                            return;
+                        }
+                    }
+                }
+            }
+        });
     }
     
     public void setCards(List<String> cards) {
@@ -86,40 +100,6 @@ public final class CardPanel extends JPanel implements MouseListener {
         else return selectedCard.getValue();
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == 1) {
-            ListIterator iter = cards.listIterator(cards.size());
-            while (iter.hasPrevious()) {
-                Card card = (Card) iter.previous();
-                if (card.getRect().contains(e.getX(), e.getY())) {
-                    selectedCard = card;
-                    repaint();
-                    return;
-                }
-            }
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        // Has to be implemented because of Mouselistener
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        // Has to be implemented because of Mouselistener
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        // Has to be implemented because of Mouselistener
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        // Has to be implemented because of Mouselistener
-    }
 
     private class Card {
 
@@ -162,7 +142,7 @@ public final class CardPanel extends JPanel implements MouseListener {
         public Card(String value) {
             this.value = value;
 
-            this.image = images.imageList.get(value);
+            this.image = Images.imageList.get(value);
             this.rect = new Rectangle2D.Double(0, 0, image.getWidth(), image.getHeight());
         }
     }

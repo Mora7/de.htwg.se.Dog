@@ -12,8 +12,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -28,7 +28,7 @@ import org.apache.log4j.Logger;
  *
  * @author kev
  */
-public class BoardPanel extends JPanel implements MouseListener {
+public class BoardPanel extends JPanel {
 
     List<ActionListener> listeners = new ArrayList<>();
     private Square selectedSquare1;
@@ -39,7 +39,23 @@ public class BoardPanel extends JPanel implements MouseListener {
     public BoardPanel() {
 
         setBackground(Color.lightGray);
-        addMouseListener(this);
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) { 
+                if (e.getButton() == 1) {
+
+                    checkIfSquareIsClicked(e, board.squares);
+
+                    for (Board.Player player : board.players) {
+
+                        checkIfSquareIsClicked(e, player.finishSquares);
+                        checkIfSquareIsClicked(e, player.homeSquares);
+                    }
+
+                }
+            }
+        });
+            
         setDoubleBuffered(true);
     }
 
@@ -248,41 +264,6 @@ public class BoardPanel extends JPanel implements MouseListener {
         this.repaint();
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-        if (e.getButton() == 1) {
-
-            checkIfSquareIsClicked(e, board.squares);
-
-            for (Board.Player player : board.players) {
-
-                checkIfSquareIsClicked(e, player.finishSquares);
-                checkIfSquareIsClicked(e, player.homeSquares);
-            }
-
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        // Has to be implemented because of Mouselistener
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        // Has to be implemented because of Mouselistener
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        // Has to be implemented because of Mouselistener
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        // Has to be implemented because of Mouselistener
-    }
 
     private class Square extends Ellipse2D.Double {
 

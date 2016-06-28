@@ -24,8 +24,10 @@ public class Images {
     public static final Map<String, BufferedImage> imageList = new HashMap<>();
     private static final Logger LOGGER = Logger.getLogger("de.htwg.dog.View.Gui.Images");
 
-    public Images() {
-
+    private Images() {
+    }
+    
+    static {
         String path = "Images/";
 
         File folder = new File(path);
