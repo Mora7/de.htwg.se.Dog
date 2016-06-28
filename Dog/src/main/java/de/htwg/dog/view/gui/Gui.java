@@ -135,9 +135,7 @@ public final class Gui extends JFrame implements I_UI {
         label.setFont(new Font("Helvetica", Font.BOLD, 32));
         label.setHorizontalAlignment(SwingConstants.CENTER);
         discardButton.setBorder(raisedbevel);
-        discardButton.addActionListener((ActionEvent e) -> {
-            contr.discardCard();
-        });
+        discardButton.addActionListener((ActionEvent e) -> contr.discardCard());
         executeButton.setBorder(raisedbevel);
         executeButton.addActionListener((ActionEvent e) -> {
             if(contr.doTurn(boardPanel.getSelectedSquare1(),

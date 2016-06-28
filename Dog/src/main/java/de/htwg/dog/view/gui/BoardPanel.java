@@ -321,10 +321,10 @@ public class BoardPanel extends JPanel implements MouseListener {
                 squares.add(new Square("S" + i));
             }
 
-            players.add(new Player(StyleParameter.colorP0, "S0", 0));
-            players.add(new Player(StyleParameter.colorP1, "S12", 1));
-            players.add(new Player(StyleParameter.colorP2, "S24", 2));
-            players.add(new Player(StyleParameter.colorP3, "S36", 3));
+            players.add(new Player(StyleParameter.colorP0, 0));
+            players.add(new Player(StyleParameter.colorP1, 1));
+            players.add(new Player(StyleParameter.colorP2, 2));
+            players.add(new Player(StyleParameter.colorP3, 3));
 
         }
 
@@ -342,7 +342,7 @@ public class BoardPanel extends JPanel implements MouseListener {
             private final List<Square> finishSquares;
             private List<String> occupiedSquares;
 
-            public Player(Color color, String startSquare, int number) {
+            public Player(Color color, int number) {
 
                 playerNumber = number;
                 homeSquares = new ArrayList<>();

@@ -88,7 +88,7 @@ public final class CardPanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if ((e.getButton() == 1)) {
+        if (e.getButton() == 1) {
             ListIterator iter = cards.listIterator(cards.size());
             while (iter.hasPrevious()) {
                 Card card = (Card) iter.previous();
