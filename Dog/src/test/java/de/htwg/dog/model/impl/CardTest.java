@@ -26,8 +26,8 @@ public class CardTest {
     @Test
     public void testChangeCard() {
         card.changeCard(ValueEnum.EIGHT, SuitEnum.DIAMOND);
-        assertEquals(card.getValue(), ValueEnum.EIGHT);
-        assertEquals(card.getSuit(), SuitEnum.DIAMOND);
+        assertEquals(card.getValue(), ValueEnum.EIGHT.name());
+        assertEquals(card.getSuit(), SuitEnum.DIAMOND.name());
     }
 
     @Test
@@ -37,12 +37,12 @@ public class CardTest {
 
     @Test
     public void testGetValue() {
-        assertEquals(card.getValue(), ValueEnum.ACE);
+        assertEquals(card.getValue(), ValueEnum.ACE.name());
     }
 
     @Test
     public void testGetSuit() {
-        assertEquals(card.getSuit(), SuitEnum.CLUB);
+        assertEquals(card.getSuit(), SuitEnum.CLUB.name());
     }
     
 }
