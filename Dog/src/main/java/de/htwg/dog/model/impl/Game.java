@@ -5,7 +5,10 @@
  */
 package de.htwg.dog.model.impl;
 
+import de.htwg.dog.model.ICard;
 import de.htwg.dog.model.IModel;
+import de.htwg.dog.model.IPlayer;
+import de.htwg.dog.model.ISquare;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,13 +19,13 @@ import java.util.Random;
  */
 public final class Game implements IModel {
 
-    List<Player> players = new ArrayList<>();
+    List<IPlayer> players = new ArrayList<>();
     Deck deck;
     int cardsPerHand;
-    Player currentPlayer;
+    IPlayer currentPlayer;
     Board board;
     String info = "";
-    Player winner;
+    IPlayer winner;
     
     @Override
     public String getInfo(){
@@ -38,7 +41,7 @@ public final class Game implements IModel {
         players.add(new Player(board.getSquareByName("S24"), 2));
         players.add(new Player(board.getSquareByName("S36"), 3));
 
-        for (Player player : players) {
+        for (IPlayer player : players) {
             board.getSquares().addAll(player.getFinishSquares());
             board.getSquares().addAll(player.getHomeSquares());
         }
@@ -61,7 +64,7 @@ public final class Game implements IModel {
         if (cardsPerHand * 4 > deck.undealedCards.size()) 
             deck = new Deck();
 
-        for (Player player : players) {
+        for (IPlayer player : players) {
             for (int i = 0; i < cardsPerHand; i++) {
                 Card card = deck.undealedCards.get(new Random().nextInt(deck.undealedCards.size() - 1));
                 deck.undealedCards.remove(card);
@@ -76,7 +79,7 @@ public final class Game implements IModel {
         if(!checkVictoryConditions())
         {
             int playerNumber = currentPlayer.getPlayerNumber();
-            Player nextPlayer;
+            IPlayer nextPlayer;
 
             if (playerNumber == 3) 
                 playerNumber = 0;
@@ -104,17 +107,17 @@ public final class Game implements IModel {
     }
 
     @Override
-    public Player getWinner() {
+    public IPlayer getWinner() {
         return winner;
     }
     
     @Override
-    public Player getCurrentPlayer() {
+    public IPlayer getCurrentPlayer() {
         return currentPlayer;
     }
 
     @Override
-    public List<Player> getPlayers() {
+    public List<IPlayer> getPlayers() {
         return players;
     }
 
@@ -126,18 +129,18 @@ public final class Game implements IModel {
     }
     
     @Override
-    public Square getSquare(String name) {
+    public ISquare getSquare(String name) {
         return board.getSquareByName(name);
     }
     
     @Override
-    public Card getCard(String name){
+    public ICard getCard(String name){
         return currentPlayer.getCardByName(name);
     }
     
     @Override
-    public Player getPlayer(int playerNo) {
-        for (Player p : players) {
+    public IPlayer getPlayer(int playerNo) {
+        for (IPlayer p : players) {
             if (p.getPlayerNumber() == playerNo) {
                 return p;
             }
@@ -160,9 +163,9 @@ public final class Game implements IModel {
                 return false;
             }
 
-            Square from = getSquare(s1);
-            Square to = getSquare(s2);
-            Card selectedCard = currentPlayer.getCardByName(card);
+            ISquare from = getSquare(s1);
+            ISquare to = getSquare(s2);
+            ICard selectedCard = currentPlayer.getCardByName(card);
 
             if(from == null || to == null){ 
                 info = "Unbekanntes Feld ausgewählt."; 
@@ -175,18 +178,20 @@ public final class Game implements IModel {
             }
 
             if (from.isOccupied() && 
-                    Draw.isDrawAllowed(from, to, selectedCard.getValue(), currentPlayer)) {
+                    Draw.isDrawAllowed(from, to, 
+                            ValueEnum.valueOf(selectedCard.getValue()), currentPlayer)) {
 
-                    for(Player player : players){
-                        for(Square occupiedSquare : player.getOccupiedSquares()){
+                    for(IPlayer player : players){
+                        for(ISquare occupiedSquare : player.getOccupiedSquares()){
                             if(occupiedSquare.getName().equals(to.getName())){
                                 player.getOccupiedSquares().remove(to);
                                 to.setOccupation(false);
 
-                                if(selectedCard.getValue() == ValueEnum.JACK) {
+                                if(ValueEnum.valueOf(selectedCard.getValue()) 
+                                        == ValueEnum.JACK) {
                                     player.getOccupiedSquares().add(from);
                                 } else {
-                                    for(Square homeSquare : player.getHomeSquares()){
+                                    for(ISquare homeSquare : player.getHomeSquares()){
                                         if(!homeSquare.isOccupied())
                                             player.getOccupiedSquares().add(homeSquare);
                                             homeSquare.setOccupation(true);
@@ -224,7 +229,7 @@ public final class Game implements IModel {
 
         boolean hasWon = true;
 
-        for (Square square : currentPlayer.getFinishSquares())
+        for (ISquare square : currentPlayer.getFinishSquares())
             hasWon &= square.isOccupied();
 
         if(hasWon) {

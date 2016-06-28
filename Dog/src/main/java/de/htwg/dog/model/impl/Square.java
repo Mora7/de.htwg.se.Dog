@@ -5,16 +5,13 @@
  */
 package de.htwg.dog.model.impl;
 
+import de.htwg.dog.model.ISquare;
+
 /**
  *
  * @author kev
  */
-public final class Square {
-
-    public enum Type {
-
-        STANDART, FINISH, HOME, DEFAULT
-    }
+public final class Square implements ISquare {
 
     private String name;
     private boolean isOccupied;
@@ -25,14 +22,17 @@ public final class Square {
         setName(name);
     }
     
+    @Override
     public boolean isOccupied() {
         return isOccupied;
     }
 
+    @Override
     public void setOccupation(boolean bool) {
         isOccupied = bool;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
 
@@ -56,14 +56,17 @@ public final class Square {
         }
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public int getNumber() {
         return number;
     }
 
+    @Override
     public Type getType() {
         return type;
     }

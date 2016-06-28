@@ -5,11 +5,13 @@
  */
 package de.htwg.dog.model.impl;
 
+import de.htwg.dog.model.ICard;
+
 /**
  *
  * @author kev
  */
-public class Card {
+public class Card implements ICard {
 
     private ValueEnum value;
     private SuitEnum suit;
@@ -29,15 +31,18 @@ public class Card {
         this.suit = suit;
     }
 
+    @Override
     public String getName() {
         return suit.getName()+ "_" + value.getName();
     }
 
-    ValueEnum getValue() {
-        return value;
+    @Override
+    public String getValue() {
+        return value.name();
     }
 
-    SuitEnum getSuit() {
-        return suit;
+    @Override
+    public String getSuit() {
+        return suit.name();
     }
 }

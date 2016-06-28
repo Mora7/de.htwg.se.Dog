@@ -8,8 +8,11 @@ package de.htwg.dog.controller.impl;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import de.htwg.dog.controller.IController;
+import de.htwg.dog.model.ICard;
 import de.htwg.dog.model.IModel;
 import de.htwg.dog.model.IModelFactory;
+import de.htwg.dog.model.IPlayer;
+import de.htwg.dog.model.ISquare;
 import de.htwg.dog.model.impl.Card;
 import de.htwg.dog.model.impl.Player;
 import de.htwg.dog.model.impl.Square;
@@ -63,7 +66,7 @@ public class Controller implements IController {
     @Override
     public List<String> getCurrentCards(){
         List<String> cards = new ArrayList();
-        for (Card c : model.getCurrentPlayer().getCards()) {
+        for (ICard c : model.getCurrentPlayer().getCards()) {
             cards.add(c.getName());
         }
 
@@ -95,7 +98,7 @@ public class Controller implements IController {
     @Override
     public List<Integer> getPlayerNos() {
         List<Integer> numbers = new ArrayList<>();
-        for(Player p : model.getPlayers()) {
+        for(IPlayer p : model.getPlayers()) {
             numbers.add(p.getPlayerNumber());
         }
         
@@ -105,7 +108,7 @@ public class Controller implements IController {
     @Override
     public List<String> getOccupiedSquares(int playerNo) {
         List<String> squares = new ArrayList();
-        for (Square s : model.getPlayer(playerNo).getOccupiedSquares()) {
+        for (ISquare s : model.getPlayer(playerNo).getOccupiedSquares()) {
             squares.add(s.getName());
         }
 

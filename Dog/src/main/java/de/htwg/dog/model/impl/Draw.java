@@ -5,6 +5,9 @@
  */
 package de.htwg.dog.model.impl;
 
+import de.htwg.dog.model.IPlayer;
+import de.htwg.dog.model.ISquare;
+
 /**
  *
  * @author kev
@@ -14,7 +17,7 @@ public class Draw {
     private Draw() {
     }
     
-    public static boolean isDrawAllowed(Square from, Square to, ValueEnum card, Player player) {
+    public static boolean isDrawAllowed(ISquare from, ISquare to, ValueEnum card, IPlayer player) {
 
         boolean validDraw = false;
         
@@ -28,7 +31,7 @@ public class Draw {
             }
         }
 
-        for (Square square : player.getOccupiedSquares()) {
+        for (ISquare square : player.getOccupiedSquares()) {
             
             // square has token from current player
             if (from.getName().equals(square.getName())) {
@@ -40,7 +43,8 @@ public class Draw {
                 }
 
                 //from standart to standart square
-                if (from.getType() == Square.Type.STANDART && to.getType() == Square.Type.STANDART) {
+                if (from.getType() == Square.Type.STANDART && to.getType() 
+                        == Square.Type.STANDART) {
                     validDraw |= fromStandartToStandart(from, to, card.getI1());
                     validDraw |= fromStandartToStandart(from, to, card.getI2());
                     validDraw |= (card == ValueEnum.JACK) 
@@ -51,11 +55,12 @@ public class Draw {
                 }
 
                 //from standart to finish square
-                if (from.getType() == Square.Type.STANDART && to.getType() == Square.Type.FINISH) {
-                    for(Square finishSquare : player.getFinishSquares()){
+                if (from.getType() == ISquare.Type.STANDART && to.getType() 
+                        == ISquare.Type.FINISH) {
+                    for(ISquare finishSquare : player.getFinishSquares()){
                         if(to.getName().equals(finishSquare.getName())){
-                            validDraw |= fromNormalToFinish(from,to,card.getI1(),player);
-                            validDraw |= fromNormalToFinish(from,to,card.getI2(),player);
+                            validDraw |= fromNormalToFinish(from,to,card.getI1(), player);
+                            validDraw |= fromNormalToFinish(from,to,card.getI2(), player);
                         }
                     }
                 } 
@@ -65,7 +70,7 @@ public class Draw {
         return validDraw;
     }
     
-    public static boolean fromStandartToStandart(Square from, Square to, int valueToGo) {
+    public static boolean fromStandartToStandart(ISquare from, ISquare to, int valueToGo) {
         int actualValueToGo = valueToGo;
         if(valueToGo < 0) 
             actualValueToGo+=48;
@@ -73,7 +78,7 @@ public class Draw {
         return difference == actualValueToGo;
     }
 
-    public static boolean fromNormalToFinish(Square from, Square to, int valueToGo, Player player) {
+    public static boolean fromNormalToFinish(ISquare from, ISquare to, int valueToGo, IPlayer player) {
         if (from != player.getStartSquare() && valueToGo > 0) {
             int difference = Int.getDifference(from.getNumber(), player.getStartSquare().getNumber());
             return difference + to.getNumber() + 1 == valueToGo;

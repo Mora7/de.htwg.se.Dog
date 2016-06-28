@@ -5,6 +5,7 @@
  */
 package de.htwg.dog.model.impl;
 
+import de.htwg.dog.model.ISquare;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +15,9 @@ import java.util.List;
  */
 public class Board {
 
-    private final List<Square> squares;
+    private final List<ISquare> squares;
 
-    public List<Square> getSquares() {
+    public List<ISquare> getSquares() {
         return squares;
     }
     
@@ -28,8 +29,8 @@ public class Board {
         }
     }
     
-    public Square getSquareByName(String name) {
-        for (Square square : squares) {
+    public ISquare getSquareByName(String name) {
+        for (ISquare square : squares) {
             if (square.getName().equals(name)) {
                 return square;
             }

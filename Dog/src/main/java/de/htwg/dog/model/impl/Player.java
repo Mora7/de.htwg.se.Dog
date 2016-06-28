@@ -5,6 +5,9 @@
  */
 package de.htwg.dog.model.impl;
 
+import de.htwg.dog.model.ICard;
+import de.htwg.dog.model.IPlayer;
+import de.htwg.dog.model.ISquare;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,16 +15,16 @@ import java.util.List;
  *
  * @author kev
  */
-public class Player {
+public class Player implements IPlayer {
     
-    private final List<Card> cards = new ArrayList<>();
+    private final List<ICard> cards = new ArrayList<>();
     private final int playerNumber;
-    private final List<Square> homeSquares;
-    private final List<Square> finishSquares;
-    private final List<Square> occupiedSquares;
-    private final Square startSquare;
+    private final List<ISquare> homeSquares;
+    private final List<ISquare> finishSquares;
+    private final List<ISquare> occupiedSquares;
+    private final ISquare startSquare;
     
-    public Player(Square startSquare, int number) {
+    public Player(ISquare startSquare, int number) {
 
         playerNumber = number;
         homeSquares = new ArrayList<>();
@@ -36,20 +39,20 @@ public class Player {
             finishSquares.add(new Square("F" + i + "P" + playerNumber));
         }
 
-        for (Square s : homeSquares) {
+        for (ISquare s : homeSquares) {
             s.setOccupation(true);
         }
     }
     
-    public List<Card> getCards() {
+    public List<ICard> getCards() {
         return cards;
     }
 
-    public List<Square> getFinishSquares() {
+    public List<ISquare> getFinishSquares() {
         return finishSquares;
     }
 
-    public List<Square> getHomeSquares() {
+    public List<ISquare> getHomeSquares() {
         return homeSquares;
     }
 
@@ -57,12 +60,12 @@ public class Player {
         return playerNumber;
     }
 
-    public Square getStartSquare() {
+    public ISquare getStartSquare() {
         return startSquare;
     }
 
-    public Card getCardByName(String name) {
-        for (Card card : cards) {
+    public ICard getCardByName(String name) {
+        for (ICard card : cards) {
             if (card.getName().equals(name)) {
                 return card;
             }
@@ -71,7 +74,7 @@ public class Player {
         return null;
     }
 
-    public List<Square> getOccupiedSquares() {
+    public List<ISquare> getOccupiedSquares() {
         return occupiedSquares;
     }
 }

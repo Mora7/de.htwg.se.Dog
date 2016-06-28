@@ -5,9 +5,6 @@
  */
 package de.htwg.dog.model;
 
-import de.htwg.dog.model.impl.Card;
-import de.htwg.dog.model.impl.Player;
-import de.htwg.dog.model.impl.Square;
 import java.util.List;
 
 /**
@@ -16,17 +13,17 @@ import java.util.List;
  */
 public interface IModel {
 
-    public List<Player> getPlayers();
-    public Player getPlayer(int playerNo);
-    public Player getCurrentPlayer();
+    public List<IPlayer> getPlayers();
+    public IPlayer getPlayer(int playerNo);
+    public IPlayer getCurrentPlayer();
 
-    public Card getCard(String name);
-    public Square getSquare(String name);
+    public ICard getCard(String name);
+    public ISquare getSquare(String name);
 
     public void discardCards();
     public boolean doTurn(String s1, String s2, String card);
     public void startGame();
     public String getInfo();
-    public Player getWinner();
+    public IPlayer getWinner();
 
 }
