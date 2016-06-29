@@ -48,7 +48,7 @@ public class ControllerTest {
     @Test
     public void testGetCurrentCards() {
         System.out.println("getCurrentCards");
-        assertEquals(contr.getCurrentCards().size(), 5);
+        assertEquals(contr.getCurrentCards().size(), 6);
     }
 
     @Test
@@ -88,10 +88,10 @@ public class ControllerTest {
     @Test
     public void testGetPlayerNos() {
         System.out.println("getPlayerNos");
-        assertEquals(contr.getPlayerNos().get(0), "0");
-        assertEquals(contr.getPlayerNos().get(1), "1");
-        assertEquals(contr.getPlayerNos().get(2), "2");
-        assertEquals(contr.getPlayerNos().get(3), "3");
+        assertEquals(contr.getPlayerNos().get(0), new Integer(0));
+        assertEquals(contr.getPlayerNos().get(1), new Integer(1));
+        assertEquals(contr.getPlayerNos().get(2), new Integer(2));
+        assertEquals(contr.getPlayerNos().get(3), new Integer(3));
     }
 
     @Test
