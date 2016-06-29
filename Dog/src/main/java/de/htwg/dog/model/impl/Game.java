@@ -66,7 +66,7 @@ public final class Game implements IModel {
             deck = new Deck();
         }
 
-        players.stream().forEach(player -> {
+        players.forEach(player -> {
             player.getCards().clear();
             for (int i = 0; i < cardsPerHand; i++) {
                 Card card = deck.undealedCards.get(new Random().nextInt(deck.undealedCards.size() - 1));
@@ -199,7 +199,7 @@ public final class Game implements IModel {
             return false;
         }
 
-        players.stream().forEach(player -> {
+        players.forEach(player -> {
             if (player.occupiesSquare(to)) {
                 
                 player.getOccupiedSquares().remove(to);
