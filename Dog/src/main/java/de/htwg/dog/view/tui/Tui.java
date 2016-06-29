@@ -122,7 +122,7 @@ public class Tui implements IView {
             return false;
         }
 
-        if (",".contains(line)) {
+        if (line.contains(",")) {
 
             String[] parts = line.split(",");
             if (parts.length == 3) {

@@ -8,6 +8,7 @@ package de.htwg.dog.view.tui;
 
 import de.htwg.dog.controller.impl.Controller;
 import de.htwg.dog.model.impl.ModelFactory;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -43,12 +44,12 @@ public class TuiTest {
     @Test
     public void testProcessInput() {
         System.out.println("processInput");
-        tui.processInput("");
-        tui.processInput("random input");
-        tui.processInput("S1,S2,SPADE_A");
-        tui.processInput("v");
-        tui.processInput("start");
-        tui.processInput("exit");
+        assertEquals(tui.processInput(""), true);
+        assertEquals(tui.processInput("random input"), true);
+        assertEquals(tui.processInput("S1,S2,SPADE"), true);
+        assertEquals(tui.processInput("v"), true);
+        assertEquals(tui.processInput("start"), true);
+        assertEquals(tui.processInput("exit"), false);
     }
     
 }
