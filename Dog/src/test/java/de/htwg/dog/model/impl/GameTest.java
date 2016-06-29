@@ -137,14 +137,6 @@ public class GameTest {
         assertEquals(game.hasErroneousParameter(square, occupiedSquare, card), true);
         assertEquals(game.hasErroneousParameter(square, occupiedSquare, null), true);
     }
-    
-    
-
-    /*@Test
-    public void testDoTurn() {
-        System.out.println("doTurn");
-        game.doTurn("H0P0", , null)
-    }*/
 
     @Test
     public void testStartGame() {
