@@ -6,7 +6,6 @@
 
 package de.htwg.dog.view.gui;
 
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import org.junit.Before;

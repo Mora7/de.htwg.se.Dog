@@ -51,13 +51,16 @@ public final class CardPanel extends JPanel {
     
     public void setCards(List<String> cards) {
         this.cards = new ArrayList<>();
-        cards.stream().forEach(card -> {
-            Card c = new Card(card);
-            this.cards.add(c);
-            if (selectedCard != null && selectedCard.value.equals(card)) {
-                selectedCard = c;
-            }
-        });
+        
+        if(cards!=null){
+            cards.stream().forEach(card -> {
+                Card c = new Card(card);
+                this.cards.add(c);
+                if (selectedCard != null && selectedCard.value.equals(card)) {
+                    selectedCard = c;
+                }
+            });
+        }
     }
 
     @Override

@@ -6,8 +6,8 @@
 
 package de.htwg.dog.view.gui;
 
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,6 +34,9 @@ public class CardPanelTest {
         System.out.println("paintComponent");
         BufferedImage b;
         b = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
+        List<String> cards = new ArrayList<>();
+        cards.add("SPADE_J");
+        cardPanel.setCards(cards);
         cardPanel.paintComponent(b.getGraphics());
     }
 
@@ -41,6 +44,13 @@ public class CardPanelTest {
     public void testGetSelectedCard() {
         System.out.println("getSelectedCard");
         assertEquals(cardPanel.getSelectedCard(), "");
+    }
+
+    @Test
+    public void testSetCards() {
+        System.out.println("setCards");
+        cardPanel.setCards(null);
+        cardPanel.setCards(new ArrayList<>());
     }
     
 }
