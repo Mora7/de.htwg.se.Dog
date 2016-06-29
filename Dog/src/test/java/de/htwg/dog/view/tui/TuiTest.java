@@ -47,6 +47,7 @@ public class TuiTest {
         assertEquals(tui.processInput(""), true);
         assertEquals(tui.processInput("random input"), true);
         assertEquals(tui.processInput("S1,S2,SPADE"), true);
+        assertEquals(tui.processInput("S1,S2"), true);
         assertEquals(tui.processInput("v"), true);
         assertEquals(tui.processInput("start"), true);
         assertEquals(tui.processInput("exit"), false);
