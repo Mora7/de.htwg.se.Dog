@@ -48,7 +48,7 @@ public class Draw {
         if (from.getType() == Square.Type.HOME && 
                 to == player.getStartSquare() && 
                 (card == ValueEnum.ACE || card == ValueEnum.KING)) {
-            validDraw = true;
+            return true;
         }
 
         //from standart to standart square
@@ -59,6 +59,8 @@ public class Draw {
             validDraw |= (card == ValueEnum.JACK
                     && to.isOccupied()
                     && !player.occupiesSquare(to));
+            
+            return validDraw;
         }
 
         //from standart to finish square
@@ -70,9 +72,11 @@ public class Draw {
                     validDraw |= fromNormalToFinish(from, to, card.getI2(), player);
                 }
             }
+            
+            return validDraw;
         }
 
-        return validDraw;
+        return false;
     }
 
     public static boolean fromStandartToStandart(ISquare from, ISquare to, int valueToGo) {
