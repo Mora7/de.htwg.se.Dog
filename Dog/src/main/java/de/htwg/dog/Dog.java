@@ -39,7 +39,6 @@ public class Dog {
         IController cont = injector.getInstance(IController.class);
         Gui gui = injector.getInstance(Gui.class);
         Tui tui = injector.getInstance(Tui.class);
-        tui.printTUI();
         cont.startGame();
         
         boolean continu = true;

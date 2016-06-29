@@ -43,7 +43,7 @@ public class Tui implements IView {
         this.contr.addUpdateListener((ActionEvent e) -> update());
     }
     
-    public void paintBoard() {
+    private void paintBoard() {
 
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -143,7 +143,7 @@ public class Tui implements IView {
         return true;
     }
     
-    public void printTUI() {
+    private void printTUI() {
         paintBoard();
         LOGGER.info("Player: " + currentPlayer);
         LOGGER.info("Karten: " + cards);
