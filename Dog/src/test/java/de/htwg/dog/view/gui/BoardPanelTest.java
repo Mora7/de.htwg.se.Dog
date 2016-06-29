@@ -58,8 +58,9 @@ public class BoardPanelTest {
     @Test
     public void testPaintComponent() {
         System.out.println("paintComponent");
+        boardPanel.setSize(500, 500);
         BufferedImage b;
-        b = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
+        b = new BufferedImage(500, 500, BufferedImage.TYPE_INT_ARGB);
         boardPanel.paintComponent(b.getGraphics());
     }
 }
