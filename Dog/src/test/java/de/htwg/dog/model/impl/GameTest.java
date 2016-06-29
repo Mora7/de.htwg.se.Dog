@@ -73,6 +73,12 @@ public class GameTest {
         game.getCurrentPlayer().getCards().clear();
         game.nextPlayer();
         assertEquals(game.getCurrentPlayer().getPlayerNumber(), 1);
+        
+        
+        game.getCurrentPlayer().getFinishSquares().stream().forEach(
+                finishSquare -> finishSquare.setOccupation(true));
+        game.nextPlayer();
+        assertEquals(game.getCurrentPlayer().getPlayerNumber(), 1);
     }
 
     @Test
@@ -170,16 +176,28 @@ public class GameTest {
         game.getCurrentPlayer().getCards().clear();
         assertEquals(game.doTurn("H0P0", "S0", "SPADE_A"), false);
         game.getCurrentPlayer().getCards().add(new Card(ValueEnum.ACE, SuitEnum.SPADE));
+        assertEquals(game.doTurn("H0P0", "S1", "SPADE_A"), false);
         assertEquals(game.doTurn("H0P0", "S0", "SPADE_A"), true);
         
-        game.getCurrentPlayer().getOccupiedSquares().add(game.getSquare("S12"));
-        game.getSquare("S12").setOccupation(true);
-        game.getPlayer(2).getOccupiedSquares().add(game.getSquare("S33"));
-        game.getSquare("S33").setOccupation(true);
+        game.startGame();
+        
+        game.getCurrentPlayer().getOccupiedSquares().add(game.getSquare("S0"));
+        game.getSquare("S0").setOccupation(true);
+        game.getPlayer(1).getOccupiedSquares().add(game.getSquare("S10"));
+        game.getSquare("S10").setOccupation(true);
         game.getCurrentPlayer().getCards().clear();
         game.getCurrentPlayer().getCards().add(new Card(ValueEnum.JACK, SuitEnum.SPADE));
-        assertEquals(game.doTurn("S12", "S33", "SPADE_J"), true);
+        assertEquals(game.doTurn("S0", "S10", "SPADE_J"), true);
         
+        game.startGame();
+        
+        game.getCurrentPlayer().getOccupiedSquares().add(game.getSquare("S0"));
+        game.getSquare("S0").setOccupation(true);
+        game.getPlayer(1).getOccupiedSquares().add(game.getSquare("S10"));
+        game.getSquare("S10").setOccupation(true);
+        game.getCurrentPlayer().getCards().clear();
+        game.getCurrentPlayer().getCards().add(new Card(ValueEnum.TEN, SuitEnum.SPADE));
+        assertEquals(game.doTurn("S0", "S10", "SPADE_10"), true);
     }
     
 }
