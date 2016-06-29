@@ -66,13 +66,13 @@ public final class Game implements IModel {
             deck = new Deck();
         }
 
-        for (IPlayer player : players) {
+        players.stream().forEach((player) -> {
             for (int i = 0; i < cardsPerHand; i++) {
                 Card card = deck.undealedCards.get(new Random().nextInt(deck.undealedCards.size() - 1));
                 deck.undealedCards.remove(card);
                 player.getCards().add(card);
             }
-        }
+        });
         cardsPerHand--;
     }
 
@@ -196,7 +196,6 @@ public final class Game implements IModel {
         }
 
         for (IPlayer player : players) {
-
             if (player.occupiesSquare(to)) {
                 
                 player.getOccupiedSquares().remove(to);

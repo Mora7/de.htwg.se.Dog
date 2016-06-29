@@ -62,11 +62,6 @@ public class BoardPanel extends JPanel {
     public Board getBoard() {
         return board;
     }
-    
-
-    public void addActionListener(ActionListener listener) {
-        listeners.add(listener);
-    }
 
     private void drawSquareBorder(Graphics2D g, Square square, int thickness) {
         if (square == selectedSquare1) {
@@ -187,20 +182,20 @@ public class BoardPanel extends JPanel {
             tmpList.addAll(player.homeSquares);
             tmpList.addAll(player.finishSquares);
 
-            for (String token : player.getOccupiedSquares()) {
+            player.getOccupiedSquares().stream().forEach((token) -> {
                 for (Square square : tmpList) {
                     if (square.name.equals(token)) {
                         drawToken(g2d, square, player.playerColor, thickness);
                         drawSquareBorder(g2d, square, thickness);
                     }
                 }
-            }
+            });
 
             angle += step;
         }
     }
 
-    public void checkIfSquareIsClicked(MouseEvent e, List<Square> squareList) {
+    private void checkIfSquareIsClicked(MouseEvent e, List<Square> squareList) {
         for (Square square : squareList) {
             if (square.contains(e.getX(), e.getY()) && e.getButton() == 1) {
                 squareClicked(square);
@@ -227,30 +222,7 @@ public class BoardPanel extends JPanel {
             return selectedSquare2.getName();
     }
 
-    public Square getSquareByName(String squareName) {
-        for (Square s : board.squares) {
-            if (s.name.equals(squareName)) {
-                return s;
-            }
-        }
-        for (Board.Player player : board.players) {
-
-            for (Square s : player.finishSquares) {
-                if (s.name.equals(squareName)) {
-                    return s;
-                }
-            }
-            for (Square s : player.homeSquares) {
-                if (s.name.equals(squareName)) {
-                    return s;
-                }
-            }
-        }
-        return null;
-    }
-
-
-    public void squareClicked(Square clickedSquare) {
+    private void squareClicked(Square clickedSquare) {
         if (selectedSquare1 == null && clickedSquare != selectedSquare2) {
             selectedSquare1 = clickedSquare;
         } else if (selectedSquare1 == clickedSquare) {
