@@ -48,11 +48,11 @@ public class Draw {
         if(from.getType() == Square.Type.STANDART) {
             //from standart to standart square
             if (to.getType() == Square.Type.STANDART)
-                fromStandartToStandart(from, to, card, player);
+                return fromStandartToStandart(from, to, card, player);
 
             //from standart to finish square
             if (to.getType() == ISquare.Type.FINISH)
-                fromStandartToFinish(from, to, card, player);
+                return fromStandartToFinish(from, to, card, player);
         }
 
         return false;
@@ -80,6 +80,10 @@ public class Draw {
 
     public static boolean fromStandartToFinish(ISquare from, ISquare to, ValueEnum card, IPlayer player) {
         boolean validDraw = false;
+        
+        if(player.occupiesSquare(to))
+            return false;
+        
         for (ISquare finishSquare : player.getFinishSquares()) {
             if (to.getName().equals(finishSquare.getName())) {
                 validDraw |= fromStandartToFinish(from, to, card.getI1(), player.getStartSquare());
