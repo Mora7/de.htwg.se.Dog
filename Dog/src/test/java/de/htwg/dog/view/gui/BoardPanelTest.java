@@ -6,6 +6,8 @@
 
 package de.htwg.dog.view.gui;
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,5 +53,13 @@ public class BoardPanelTest {
     public void testGetSelectedSquare2() {
         System.out.println("getSelectedSquare2");
         assertEquals(boardPanel.getSelectedSquare2(), "");
+    }
+
+    @Test
+    public void testPaintComponent() {
+        System.out.println("paintComponent");
+        BufferedImage b;
+        b = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
+        boardPanel.paintComponent(b.getGraphics());
     }
 }

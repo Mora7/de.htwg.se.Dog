@@ -30,11 +30,20 @@ import org.apache.log4j.Logger;
  */
 public class BoardPanel extends JPanel {
 
-    List<ActionListener> listeners = new ArrayList<>();
+    private List<ActionListener> listeners = new ArrayList<>();
     private Board.Square selectedSquare1;
     private Board.Square selectedSquare2;
     private final Board board = new Board();
     private static final Logger LOGGER = Logger.getLogger("de.htwg.dog.View.Gui.Boardpanel");
+    
+    static final Color colorP0 = Color.YELLOW;
+    static final Color colorP1 = Color.BLUE;
+    static final Color colorP2 = Color.GREEN;
+    static final Color colorP3 = Color.CYAN;
+
+    static final Color colorSelectedS1 = Color.MAGENTA;
+    static final Color colorSelectedS2 = Color.RED;
+    static final Color colorBorder = Color.BLACK;
     
     public BoardPanel() {
 
@@ -60,13 +69,12 @@ public class BoardPanel extends JPanel {
     }
 
     private void drawSquareBorder(Graphics2D g, Board.Square square, int thickness) {
-        if (square == selectedSquare1) {
-            g.setColor(StyleParameter.colorSelectedS1);
-        } else if (square == selectedSquare2) {
-            g.setColor(StyleParameter.colorSelectedS2);
-        } else {
-            g.setColor(StyleParameter.colorBorder);
-        }
+        if (square == selectedSquare1) 
+            g.setColor(colorSelectedS1);
+        else if (square == selectedSquare2)
+            g.setColor(colorSelectedS2);
+        else 
+            g.setColor(colorBorder);
 
         g.setStroke(new BasicStroke(thickness));
         g.draw(square);
@@ -84,14 +92,13 @@ public class BoardPanel extends JPanel {
 
         drawSquare(g, square, color);
 
-        g.setColor(StyleParameter.colorBorder);
+        g.setColor(colorBorder);
 
         g.setStroke(new BasicStroke(thickness));
         Ellipse2D ell = new Ellipse2D.Double();
         ell.setFrame(square.getCenterX() - square.getWidth() / 10, square.getCenterY() - square.getWidth() / 10, square.getWidth() / 5, square.getWidth() / 5);
         g.draw(ell);
         g.setStroke(new BasicStroke(0));
-
     }
 
     private void drawBackgorundImage(Graphics2D g2d, Point center, int drawAreaSide) {
@@ -253,10 +260,10 @@ public class BoardPanel extends JPanel {
                 squares.add(new Square("S" + i));
             }
 
-            players.add(new Player(StyleParameter.colorP0, 0));
-            players.add(new Player(StyleParameter.colorP1, 1));
-            players.add(new Player(StyleParameter.colorP2, 2));
-            players.add(new Player(StyleParameter.colorP3, 3));
+            players.add(new Player(colorP0, 0));
+            players.add(new Player(colorP1, 1));
+            players.add(new Player(colorP2, 2));
+            players.add(new Player(colorP3, 3));
 
         }     
         
