@@ -31,8 +31,8 @@ import org.apache.log4j.Logger;
 public class BoardPanel extends JPanel {
 
     List<ActionListener> listeners = new ArrayList<>();
-    private Square selectedSquare1;
-    private Square selectedSquare2;
+    private Board.Square selectedSquare1;
+    private Board.Square selectedSquare2;
     private final Board board = new Board();
     private static final Logger LOGGER = Logger.getLogger("de.htwg.dog.View.Gui.Boardpanel");
     
@@ -59,7 +59,7 @@ public class BoardPanel extends JPanel {
         setDoubleBuffered(true);
     }
 
-    private void drawSquareBorder(Graphics2D g, Square square, int thickness) {
+    private void drawSquareBorder(Graphics2D g, Board.Square square, int thickness) {
         if (square == selectedSquare1) {
             g.setColor(StyleParameter.colorSelectedS1);
         } else if (square == selectedSquare2) {
@@ -73,14 +73,14 @@ public class BoardPanel extends JPanel {
         g.setStroke(new BasicStroke(0));
     }
 
-    private void drawSquare(Graphics2D g, Square square, Color color) {
+    private void drawSquare(Graphics2D g, Board.Square square, Color color) {
         g.setColor(color);
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.75f));
         g.fill(square);
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 
-    private void drawToken(Graphics2D g, Square square, Color color, int thickness) {
+    private void drawToken(Graphics2D g, Board.Square square, Color color, int thickness) {
 
         drawSquare(g, square, color);
 
@@ -133,7 +133,7 @@ public class BoardPanel extends JPanel {
 
         drawBackgorundImage(g2d, center, (int)drawAreaSide);
 
-        for (Square square : board.squares) {
+        for (Board.Square square : board.squares) {
 
             x = center.x + radius * Math.cos(angle);
             y = center.y + radius * Math.sin(angle);
@@ -151,7 +151,7 @@ public class BoardPanel extends JPanel {
 
             radius = drawAreaSide / 2;
 
-            for (Square finishSquare : player.finishSquares) {
+            for (Board.Square finishSquare : player.finishSquares) {
 
                 radius -= 1.3 * radiusOfSquare;
 
@@ -167,7 +167,7 @@ public class BoardPanel extends JPanel {
             radius = drawAreaSide / 2 + 1.3 * radiusOfSquare;
             double tmpAngle = angle;
 
-            for (Square homeSquare : player.homeSquares) {
+            for (Board.Square homeSquare : player.homeSquares) {
 
                 x = center.x + radius * Math.cos(tmpAngle);
                 y = center.y + radius * Math.sin(tmpAngle);
@@ -179,13 +179,13 @@ public class BoardPanel extends JPanel {
                 tmpAngle -= step / 8;
             }
 
-            List<Square> tmpList = new ArrayList<>();
+            List<Board.Square> tmpList = new ArrayList<>();
             tmpList.addAll(board.squares);
             tmpList.addAll(player.homeSquares);
             tmpList.addAll(player.finishSquares);
 
             player.getOccupiedSquares().stream().forEach(token -> {
-                for (Square square : tmpList) {
+                for (Board.Square square : tmpList) {
                     if (square.name.equals(token)) {
                         drawToken(g2d, square, player.playerColor, thickness);
                         drawSquareBorder(g2d, square, thickness);
@@ -197,8 +197,8 @@ public class BoardPanel extends JPanel {
         }
     }
 
-    private void checkIfSquareIsClicked(MouseEvent e, List<Square> squareList) {
-        for (Square square : squareList) {
+    private void checkIfSquareIsClicked(MouseEvent e, List<Board.Square> squareList) {
+        for (Board.Square square : squareList) {
             if (square.contains(e.getX(), e.getY()) && e.getButton() == 1) {
                 squareClicked(square);
             }
@@ -228,7 +228,7 @@ public class BoardPanel extends JPanel {
             return selectedSquare2.getName();
     }
 
-    private void squareClicked(Square clickedSquare) {
+    private void squareClicked(Board.Square clickedSquare) {
         if (selectedSquare1 == null && clickedSquare != selectedSquare2) {
             selectedSquare1 = clickedSquare;
         } else if (selectedSquare1 == clickedSquare) {
@@ -242,43 +242,12 @@ public class BoardPanel extends JPanel {
         this.repaint();
     }
 
-
-    private class Square extends Ellipse2D.Double {
-
-        private final String name;
-        
-        public Square(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
-        
-        @Override
-        public boolean equals(Object obj) {
-            if (!super.equals(obj))
-                return false;
-
-            Square fobj = (Square) obj;
-            if (name.equals(fobj.getName()))
-                return true;
-            
-            return false;
-        }
-        
-        @Override
-        public int hashCode() {
-            return super.hashCode() + name.hashCode();
-        }
-    }
-
     public class Board {
 
         private final List<Square> squares = new ArrayList<>();
         private final List<Player> players = new ArrayList<>();
         
-        public Board() {
+        private Board() {
 
             for (int i = 0; i < 48; i++) {
                 squares.add(new Square("S" + i));
@@ -290,8 +259,38 @@ public class BoardPanel extends JPanel {
             players.add(new Player(StyleParameter.colorP3, 3));
 
         }     
+        
+        private class Square extends Ellipse2D.Double {
 
-        public class Player {
+            private final String name;
+
+            private Square(String name) {
+                this.name = name;
+            }
+
+            private String getName() {
+                return name;
+            }
+
+            @Override
+            public boolean equals(Object obj) {
+                if (!super.equals(obj))
+                    return false;
+
+                Square fobj = (Square) obj;
+                if (name.equals(fobj.getName()))
+                    return true;
+
+                return false;
+            }
+
+            @Override
+            public int hashCode() {
+                return super.hashCode() + name.hashCode();
+            }
+        }
+
+        private class Player {
             
             private final int playerNumber;
             private Color playerColor;
@@ -299,7 +298,7 @@ public class BoardPanel extends JPanel {
             private final List<Square> finishSquares;
             private List<String> occupiedSquares;
 
-            public Player(Color color, int number) {
+            private Player(Color color, int number) {
 
                 playerNumber = number;
                 homeSquares = new ArrayList<>();
@@ -314,11 +313,11 @@ public class BoardPanel extends JPanel {
 
             }
 
-            public List<String> getOccupiedSquares() {
+            private List<String> getOccupiedSquares() {
                 return occupiedSquares;
             }
 
-            public void setOccupiedSquares(List<String> occupiedSquares) {
+            private void setOccupiedSquares(List<String> occupiedSquares) {
                 this.occupiedSquares = occupiedSquares;
             }
         }
