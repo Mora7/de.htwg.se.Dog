@@ -32,8 +32,7 @@ public final class Square implements ISquare {
         isOccupied = bool;
     }
 
-    @Override
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
 
         switch (name.charAt(0)) {

@@ -61,6 +61,15 @@ public class GameTest {
         assertEquals(game.getCurrentPlayer().getPlayerNumber(), 0);
         game.nextPlayer();
         assertEquals(game.getCurrentPlayer().getPlayerNumber(), 1);
+        game.getCurrentPlayer().getCards().clear();
+        game.nextPlayer();
+        game.getCurrentPlayer().getCards().clear();
+        game.nextPlayer();
+        game.getCurrentPlayer().getCards().clear();
+        game.nextPlayer();
+        assertEquals(game.getCurrentPlayer().getPlayerNumber(), 0);
+        game.nextPlayer();
+        assertEquals(game.getCurrentPlayer().getPlayerNumber(), 0);
     }
 
     @Test

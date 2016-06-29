@@ -69,6 +69,7 @@ public class ValueEnumTest {
         assertEquals(ValueEnum.fromString("8"), ValueEnum.EIGHT);
         assertEquals(ValueEnum.fromString("5"), ValueEnum.FIVE);
         assertEquals(ValueEnum.fromString("4"), ValueEnum.FOUR);
+        assertEquals(SuitEnum.fromString("Unbekannt"), null);
     }
     
 }

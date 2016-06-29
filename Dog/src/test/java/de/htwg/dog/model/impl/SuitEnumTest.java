@@ -56,6 +56,7 @@ public class SuitEnumTest {
         assertEquals(SuitEnum.fromString("DIAMOND"), SuitEnum.DIAMOND);
         assertEquals(SuitEnum.fromString("SPADE"), SuitEnum.SPADE);
         assertEquals(SuitEnum.fromString("HEART"), SuitEnum.HEART);
+        assertEquals(SuitEnum.fromString("Unbekannt"), null);
     }
 }
 

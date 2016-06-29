@@ -21,11 +21,6 @@ public class Card implements ICard {
         this.suit = suit;
     }
 
-    public Card(String name) {
-        this.suit = SuitEnum.fromString(name.substring(0, name.indexOf("_")));
-        this.value = ValueEnum.fromString(name.substring(name.indexOf("_") + 1, name.length()));
-    }
-
     void changeCard(ValueEnum value, SuitEnum suit) {
         this.value = value;
         this.suit = suit;
