@@ -37,46 +37,38 @@ public class Draw {
         
     public static boolean checkNonJokerCardDraw(ISquare from, 
             ISquare to, ValueEnum card, IPlayer player) {
-
-        boolean validDraw = false;
         
-        if (!player.occupiesSquare(from)) {
+        if (!player.occupiesSquare(from))
             return false;
-        }
 
         //from home to start square
-        if (from.getType() == Square.Type.HOME && 
-                to == player.getStartSquare() && 
-                (card == ValueEnum.ACE || card == ValueEnum.KING)) {
-            return true;
-        }
-
+        if (from.getType() == Square.Type.HOME && to == player.getStartSquare())
+            return fromHomeToStandart(from, to, card);
+        
         //from standart to standart square
-        if (from.getType() == Square.Type.STANDART
-                && to.getType() == Square.Type.STANDART) {
-            validDraw |= fromStandartToStandart(from, to, card.getI1());
-            validDraw |= fromStandartToStandart(from, to, card.getI2());
-            validDraw |= (card == ValueEnum.JACK
-                    && to.isOccupied()
-                    && !player.occupiesSquare(to));
-            
-            return validDraw;
-        }
+        if (from.getType() == Square.Type.STANDART && to.getType() == Square.Type.STANDART)
+            fromStandartToStandart(from, to, card, player);
 
         //from standart to finish square
-        if (from.getType() == ISquare.Type.STANDART
-                && to.getType() == ISquare.Type.FINISH) {
-            for (ISquare finishSquare : player.getFinishSquares()) {
-                if (to.getName().equals(finishSquare.getName())) {
-                    validDraw |= fromNormalToFinish(from, to, card.getI1(), player);
-                    validDraw |= fromNormalToFinish(from, to, card.getI2(), player);
-                }
-            }
-            
-            return validDraw;
-        }
+        if (from.getType() == ISquare.Type.STANDART && to.getType() == ISquare.Type.FINISH)
+            fromStandartToFinish(from, to, card, player);
 
         return false;
+    }
+    
+    public static boolean fromHomeToStandart(ISquare from, ISquare to, ValueEnum card) {
+        return (card == ValueEnum.ACE || card == ValueEnum.KING);
+    }
+    
+    public static boolean fromStandartToStandart(ISquare from, ISquare to, ValueEnum card, IPlayer player) {
+        boolean validDraw = false;
+        validDraw |= fromStandartToStandart(from, to, card.getI1());
+        validDraw |= fromStandartToStandart(from, to, card.getI2());
+        validDraw |= (card == ValueEnum.JACK
+                        && to.isOccupied()
+                        && !player.occupiesSquare(to));
+
+        return validDraw;
     }
 
     public static boolean fromStandartToStandart(ISquare from, ISquare to, int valueToGo) {
@@ -88,9 +80,21 @@ public class Draw {
         return difference == actualValueToGo;
     }
 
-    public static boolean fromNormalToFinish(ISquare from, ISquare to, int valueToGo, IPlayer player) {
-        if (from != player.getStartSquare() && valueToGo > 0) {
-            int difference = Int.getDifference(from.getNumber(), player.getStartSquare().getNumber());
+    public static boolean fromStandartToFinish(ISquare from, ISquare to, ValueEnum card, IPlayer player) {
+        boolean validDraw = false;
+        for (ISquare finishSquare : player.getFinishSquares()) {
+            if (to.getName().equals(finishSquare.getName())) {
+                validDraw |= fromStandartToFinish(from, to, card.getI1(), player.getStartSquare());
+                validDraw |= fromStandartToFinish(from, to, card.getI2(), player.getStartSquare());
+            }
+        }
+
+        return validDraw;
+    }
+    
+    public static boolean fromStandartToFinish(ISquare from, ISquare to, int valueToGo, ISquare startSquare) {
+        if (from != startSquare && valueToGo > 0) {
+            int difference = Int.getDifference(from.getNumber(), startSquare.getNumber());
             return difference + to.getNumber() + 1 == valueToGo;
         }
 
