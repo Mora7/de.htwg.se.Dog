@@ -38,24 +38,26 @@ public class Draw {
     public static boolean checkNonJokerCardDraw(ISquare from, 
             ISquare to, ValueEnum card, IPlayer player) {
         
+        boolean validDraw = false;
+        
         if (!player.occupiesSquare(from))
             return false;
 
         //from home to start square
         if (from.getType() == Square.Type.HOME && to == player.getStartSquare())
-            return card == ValueEnum.ACE || card == ValueEnum.KING;
+            validDraw = card == ValueEnum.ACE || card == ValueEnum.KING;
         
         if(from.getType() == Square.Type.STANDART) {
             //from standart to standart square
             if (to.getType() == Square.Type.STANDART)
-                return fromStandartToStandart(from, to, card, player);
+                validDraw = fromStandartToStandart(from, to, card, player);
 
             //from standart to finish square
             if (to.getType() == ISquare.Type.FINISH)
-                return fromStandartToFinish(from, to, card, player);
+                validDraw = fromStandartToFinish(from, to, card, player);
         }
 
-        return false;
+        return validDraw;
     }
     
     public static boolean fromStandartToStandart(ISquare from, ISquare to, ValueEnum card, IPlayer player) {
