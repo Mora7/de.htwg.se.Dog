@@ -35,7 +35,7 @@ public class Draw {
         return validDraw;
     }
         
-    public static boolean checkNonJokerCardDraw(ISquare from, 
+    private static boolean checkNonJokerCardDraw(ISquare from, 
             ISquare to, ValueEnum card, IPlayer player) {
         
         boolean validDraw = false;
@@ -60,7 +60,7 @@ public class Draw {
         return validDraw;
     }
     
-    public static boolean fromStandartToStandart(ISquare from, ISquare to, ValueEnum card, IPlayer player) {
+    private static boolean fromStandartToStandart(ISquare from, ISquare to, ValueEnum card, IPlayer player) {
         boolean validDraw = false;
         validDraw |= fromStandartToStandart(from, to, card.getI1());
         validDraw |= fromStandartToStandart(from, to, card.getI2());
@@ -71,16 +71,16 @@ public class Draw {
         return validDraw;
     }
 
-    public static boolean fromStandartToStandart(ISquare from, ISquare to, int valueToGo) {
+    private static boolean fromStandartToStandart(ISquare from, ISquare to, int valueToGo) {
         int actualValueToGo = valueToGo;
         if (valueToGo < 0) {
             actualValueToGo += 48;
         }
-        int difference = Int.getDifference(from.getNumber(), to.getNumber());
+        int difference = getIntDifference(from.getNumber(), to.getNumber());
         return difference == actualValueToGo;
     }
 
-    public static boolean fromStandartToFinish(ISquare from, ISquare to, ValueEnum card, IPlayer player) {
+    private static boolean fromStandartToFinish(ISquare from, ISquare to, ValueEnum card, IPlayer player) {
         boolean validDraw = false;
         
         for (ISquare finishSquare : player.getFinishSquares()) {
@@ -93,27 +93,20 @@ public class Draw {
         return validDraw && !player.occupiesSquare(to);
     }
     
-    public static boolean fromStandartToFinish(ISquare from, ISquare to, int valueToGo, ISquare startSquare) {
+    private static boolean fromStandartToFinish(ISquare from, ISquare to, int valueToGo, ISquare startSquare) {
         if (from != startSquare && valueToGo > 0) {
-            int difference = Int.getDifference(from.getNumber(), startSquare.getNumber());
+            int difference = getIntDifference(from.getNumber(), startSquare.getNumber());
             return difference + to.getNumber() + 1 == valueToGo;
         }
 
         return false;
     }
 
-    static class Int {
-
-        private Int() {
+    private static int getIntDifference(int i1, int i2) {
+        int diff = i2 - i1;
+        if (diff < 0) {
+            diff += 48;
         }
-
-        public static int getDifference(int i1, int i2) {
-            int diff = i2 - i1;
-            if (diff < 0) {
-                diff += 48;
-            }
-            return diff;
-        }
-
+        return diff;
     }
 }
