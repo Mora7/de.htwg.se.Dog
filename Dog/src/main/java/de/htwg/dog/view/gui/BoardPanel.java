@@ -30,7 +30,6 @@ import org.apache.log4j.Logger;
  */
 public class BoardPanel extends JPanel {
 
-    private List<ActionListener> listeners = new ArrayList<>();
     private Board.Square selectedSquare1;
     private Board.Square selectedSquare2;
     private final Board board = new Board();

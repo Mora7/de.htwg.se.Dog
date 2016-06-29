@@ -36,5 +36,11 @@ public class CardPanelTest {
         b = new BufferedImage(100, 100, BufferedImage.TYPE_INT_ARGB);
         cardPanel.paintComponent(b.getGraphics());
     }
+
+    @Test
+    public void testGetSelectedCard() {
+        System.out.println("getSelectedCard");
+        assertEquals(cardPanel.getSelectedCard(), "");
+    }
     
 }
