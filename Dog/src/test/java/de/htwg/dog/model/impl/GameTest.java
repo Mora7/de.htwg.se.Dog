@@ -3,26 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package de.htwg.dog.model.impl;
 
+import de.htwg.dog.model.ICard;
+import de.htwg.dog.model.IPlayer;
+import de.htwg.dog.model.ISquare;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author a1337
+ * @author kev
  */
 public class GameTest {
+    
+    Game game = new Game();
     
     public GameTest() {
     }
     
-    Game game;
-    
     @Before
     public void setUp() {
-        game = new Game();
         game.startGame();
     }
 
@@ -37,101 +41,126 @@ public class GameTest {
         assertEquals(game.getInfo(), "Unbekanntes Feld ausgewählt.");
     }
 
-    /*@Test
+    @Test
     public void testNewRound() {
-        /*System.out.println("newRound");
-        Game instance = new Game();
-        instance.newRound();
-        fail("The test case is a prototype.");
+        System.out.println("newRound");
+        assertEquals(game.currentPlayer.getCards().size(), 6);
+        game.newRound();
+        assertEquals(game.currentPlayer.getPlayerNumber(), 0);
+        assertEquals(game.currentPlayer.getCards().size(), 5);
+        game.newRound();
+        game.newRound();
+        game.newRound();
+        assertEquals(game.currentPlayer.getCards().size(), 2);
+        game.newRound();
+        assertEquals(game.currentPlayer.getCards().size(), 6);
     }
 
     @Test
     public void testNextPlayer() {
         System.out.println("nextPlayer");
-        Game instance = new Game();
-        instance.nextPlayer();
-        fail("The test case is a prototype.");
+        assertEquals(game.currentPlayer.getPlayerNumber(), 0);
+        game.nextPlayer();
+        assertEquals(game.currentPlayer.getPlayerNumber(), 1);
     }
 
     @Test
     public void testGetWinner() {
         System.out.println("getWinner");
-        Game instance = new Game();
-        Player expResult = null;
-        Player result = instance.getWinner();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        assertEquals(game.getWinner(), null);
+        IPlayer winner = game.currentPlayer;
+        winner.getFinishSquares().stream().forEach(finishSquare ->
+            finishSquare.setOccupation(true));
+        game.doTurn("", "", "");
+        assertEquals(game.getWinner(), winner);
     }
 
     @Test
     public void testGetCurrentPlayer() {
         System.out.println("getCurrentPlayer");
-        Game instance = new Game();
-        Player expResult = null;
-        Player result = instance.getCurrentPlayer();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        assertEquals(game.getCurrentPlayer().getPlayerNumber(), 0);
+        game.nextPlayer();
+        assertEquals(game.getCurrentPlayer().getPlayerNumber(), 1);
     }
 
     @Test
     public void testGetPlayers() {
         System.out.println("getPlayers");
-        Game instance = new Game();
-        List<Player> expResult = null;
-        List<Player> result = instance.getPlayers();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        assertEquals(game.players, game.getPlayers());
     }
 
     @Test
     public void testDiscardCards() {
         System.out.println("discardCards");
-        Game instance = new Game();
-        instance.discardCards();
-        fail("The test case is a prototype.");
+        assertEquals(game.currentPlayer.getPlayerNumber(), 0);
+        game.discardCards();
+        assertEquals(game.players.get(0).getCards().isEmpty(), true);
+        assertEquals(game.currentPlayer.getPlayerNumber(), 1);
+        assertEquals(game.getInfo(), "Player 0 hat die Karten verworfen.");
     }
 
     @Test
     public void testGetSquare() {
         System.out.println("getSquare");
-        String name = "";
-        Game instance = new Game();
-        Square expResult = null;
-        Square result = instance.getSquare(name);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        assertEquals(game.getSquare("Unbekanntes Feld"), null);
+        assertEquals(game.getSquare("S0").getName(), "S0");
     }
 
     @Test
     public void testGetCard() {
         System.out.println("getCard");
-        String name = "";
-        Game instance = new Game();
-        Card expResult = null;
-        Card result = instance.getCard(name);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        ICard card = game.currentPlayer.getCards().get(1);
+        assertEquals(game.getCard(card.getName()).getName(), card.getName());
+        assertEquals(game.getCard("Unbekannte Karte"), null);
     }
 
     @Test
+    public void testGetPlayer() {
+        System.out.println("getPlayer");
+        assertEquals(game.getPlayer(0), game.currentPlayer);
+        assertEquals(game.getPlayer(10), null);
+    }
+
+    @Test
+    public void testHasMissingParameter() {
+        System.out.println("hasMissingParameter");
+        assertEquals(game.hasMissingParameter("", "", ""), true);
+        assertEquals(game.hasMissingParameter("S1", "S2", "C1"), false);
+        assertEquals(game.hasMissingParameter("S1", "S2", ""), true);
+        assertEquals(game.hasMissingParameter("", "", "C1"), true);
+        assertEquals(game.hasMissingParameter("S1", "", "C1"), true);
+    }
+
+    @Test
+    public void testHasErroneousParameter() {
+        System.out.println("hasErroneousParameter");
+        assertEquals(game.hasErroneousParameter(null, null, null), true);
+        ICard card = game.currentPlayer.getCards().get(0);
+        ISquare occupiedSquare = game.currentPlayer.getOccupiedSquares().get(0);
+        ISquare square = game.getSquare("S0");
+        assertEquals(game.hasErroneousParameter(square, null, card), true);
+        assertEquals(game.hasErroneousParameter(null, square, card), true);
+        assertEquals(game.hasErroneousParameter(occupiedSquare, square, card), false);
+        assertEquals(game.hasErroneousParameter(square, occupiedSquare, card), true);
+        assertEquals(game.hasErroneousParameter(square, occupiedSquare, null), true);
+    }
+    
+    
+
+    /*@Test
     public void testDoTurn() {
         System.out.println("doTurn");
-        String s1 = "";
-        String s2 = "";
-        String card = "";
-        Game instance = new Game();
-        boolean expResult = false;
-        boolean result = instance.doTurn(s1, s2, card);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
+        game.doTurn("H0P0", , null)
+    }*/
 
     @Test
     public void testStartGame() {
         System.out.println("startGame");
-        Game instance = new Game();
-        instance.startGame();
-        fail("The test case is a prototype.");
-    }*/
+        game.newRound();
+        game.nextPlayer();
+        assertEquals(game.currentPlayer.getPlayerNumber(), 1);
+        game.startGame();
+        assertEquals(game.currentPlayer.getPlayerNumber(), 0);
+    }
     
 }

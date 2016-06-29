@@ -67,6 +67,7 @@ public final class Game implements IModel {
         }
 
         players.stream().forEach(player -> {
+            player.getCards().clear();
             for (int i = 0; i < cardsPerHand; i++) {
                 Card card = deck.undealedCards.get(new Random().nextInt(deck.undealedCards.size() - 1));
                 deck.undealedCards.remove(card);
