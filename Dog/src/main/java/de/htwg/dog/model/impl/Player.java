@@ -45,6 +45,16 @@ public class Player implements IPlayer {
     }
     
     @Override
+    public boolean occupiesSquare(ISquare square){
+        for (ISquare occupiedSquare : occupiedSquares) {
+            if(occupiedSquare.getName().equals(square.getName()))
+                return true;
+        }
+        
+        return false;
+    }
+    
+    @Override
     public List<ICard> getCards() {
         return cards;
     }

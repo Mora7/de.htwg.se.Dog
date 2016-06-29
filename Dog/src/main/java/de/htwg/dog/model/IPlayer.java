@@ -27,5 +27,7 @@ public interface IPlayer {
 
     public ICard getCardByName(String name);
 
-    public List<ISquare> getOccupiedSquares();   
+    public List<ISquare> getOccupiedSquares(); 
+    
+    public boolean occupiesSquare(ISquare square);
 }
