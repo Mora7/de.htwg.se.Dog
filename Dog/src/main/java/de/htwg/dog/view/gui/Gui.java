@@ -190,8 +190,8 @@ public final class Gui extends JFrame implements IView {
         label.setText(currentPlayer);
         
         for(int playerNo : contr.getPlayerNos()) {
-            boardPanel.getBoard().getPlayers().get(playerNo)
-                    .setOccupiedSquares(contr.getOccupiedSquares(playerNo));
+            boardPanel.setOccupiedSquares(playerNo, 
+                    contr.getOccupiedSquares(playerNo));
         }
         
         if(contr.getWinnerNo() >= 0){

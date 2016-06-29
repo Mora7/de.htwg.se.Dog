@@ -59,10 +59,6 @@ public class BoardPanel extends JPanel {
         setDoubleBuffered(true);
     }
 
-    public Board getBoard() {
-        return board;
-    }
-
     private void drawSquareBorder(Graphics2D g, Square square, int thickness) {
         if (square == selectedSquare1) {
             g.setColor(StyleParameter.colorSelectedS1);
@@ -203,6 +199,10 @@ public class BoardPanel extends JPanel {
         }
     }
     
+    public void setOccupiedSquares(int playerNo, List<String> occupiedSquares) {
+        board.players.get(playerNo).setOccupiedSquares(occupiedSquares);
+    }
+    
     public void resetSelectedSquares(){
         selectedSquare1=null;
         selectedSquare2=null;
@@ -283,12 +283,6 @@ public class BoardPanel extends JPanel {
             players.add(new Player(StyleParameter.colorP2, 2));
             players.add(new Player(StyleParameter.colorP3, 3));
 
-        }
-
-        
-
-        public List<Player> getPlayers() {
-            return players;
         }     
 
         public class Player {
