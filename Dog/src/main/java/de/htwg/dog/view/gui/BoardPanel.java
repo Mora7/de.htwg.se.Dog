@@ -112,6 +112,12 @@ public class BoardPanel extends JPanel {
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
+        paintBoard(g);
+    }
+    
+    private void paintBoard(Graphics g) {
+
+        super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g;
 

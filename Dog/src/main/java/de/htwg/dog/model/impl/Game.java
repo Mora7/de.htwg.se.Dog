@@ -19,13 +19,13 @@ import java.util.Random;
  */
 public final class Game implements IModel {
 
-    List<IPlayer> players = new ArrayList<>();
-    Deck deck;
-    int cardsPerHand;
-    IPlayer currentPlayer;
-    Board board;
-    String info = "";
-    IPlayer winner;
+    private List<IPlayer> players = new ArrayList<>();
+    private Deck deck;
+    private int cardsPerHand;
+    private IPlayer currentPlayer;
+    private Board board;
+    private String info = "";
+    private IPlayer winner;
 
     @Override
     public String getInfo() {
