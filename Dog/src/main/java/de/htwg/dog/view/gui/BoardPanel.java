@@ -182,7 +182,7 @@ public class BoardPanel extends JPanel {
             tmpList.addAll(player.homeSquares);
             tmpList.addAll(player.finishSquares);
 
-            player.getOccupiedSquares().stream().forEach((token) -> {
+            player.getOccupiedSquares().stream().forEach(token -> {
                 for (Square square : tmpList) {
                     if (square.name.equals(token)) {
                         drawToken(g2d, square, player.playerColor, thickness);

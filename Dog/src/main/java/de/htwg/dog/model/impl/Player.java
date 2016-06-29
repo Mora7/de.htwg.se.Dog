@@ -39,7 +39,7 @@ public class Player implements IPlayer {
             finishSquares.add(new Square("F" + i + "P" + playerNumber));
         }
 
-        homeSquares.stream().forEach((s) -> 
+        homeSquares.stream().forEach(s -> 
             s.setOccupation(true)
         );
     }

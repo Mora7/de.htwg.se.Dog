@@ -45,13 +45,15 @@ public class Draw {
         if (from.getType() == Square.Type.HOME && to == player.getStartSquare())
             return card == ValueEnum.ACE || card == ValueEnum.KING;
         
-        //from standart to standart square
-        if (from.getType() == Square.Type.STANDART && to.getType() == Square.Type.STANDART)
-            fromStandartToStandart(from, to, card, player);
+        if(from.getType() == Square.Type.STANDART) {
+            //from standart to standart square
+            if (to.getType() == Square.Type.STANDART)
+                fromStandartToStandart(from, to, card, player);
 
-        //from standart to finish square
-        if (from.getType() == ISquare.Type.STANDART && to.getType() == ISquare.Type.FINISH)
-            fromStandartToFinish(from, to, card, player);
+            //from standart to finish square
+            if (to.getType() == ISquare.Type.FINISH)
+                fromStandartToFinish(from, to, card, player);
+        }
 
         return false;
     }
