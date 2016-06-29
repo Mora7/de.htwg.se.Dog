@@ -70,6 +70,9 @@ public class GameTest {
         assertEquals(game.getCurrentPlayer().getPlayerNumber(), 0);
         game.nextPlayer();
         assertEquals(game.getCurrentPlayer().getPlayerNumber(), 0);
+        game.getCurrentPlayer().getCards().clear();
+        game.nextPlayer();
+        assertEquals(game.getCurrentPlayer().getPlayerNumber(), 1);
     }
 
     @Test
@@ -155,6 +158,28 @@ public class GameTest {
         assertEquals(game.getCurrentPlayer().getPlayerNumber(), 1);
         game.startGame();
         assertEquals(game.getCurrentPlayer().getPlayerNumber(), 0);
+    }
+    
+    @Test
+    public void testDoTurn() {
+        System.out.println("startGame");
+        
+        assertEquals(game.doTurn("", "", ""), false);
+        assertEquals(game.doTurn("Unbekannt", "Unbekannt", "Unbekannt"), false);
+        
+        game.getCurrentPlayer().getCards().clear();
+        assertEquals(game.doTurn("H0P0", "S0", "SPADE_A"), false);
+        game.getCurrentPlayer().getCards().add(new Card(ValueEnum.ACE, SuitEnum.SPADE));
+        assertEquals(game.doTurn("H0P0", "S0", "SPADE_A"), true);
+        
+        game.getCurrentPlayer().getOccupiedSquares().add(game.getSquare("S12"));
+        game.getSquare("S12").setOccupation(true);
+        game.getPlayer(2).getOccupiedSquares().add(game.getSquare("S33"));
+        game.getSquare("S33").setOccupation(true);
+        game.getCurrentPlayer().getCards().clear();
+        game.getCurrentPlayer().getCards().add(new Card(ValueEnum.JACK, SuitEnum.SPADE));
+        assertEquals(game.doTurn("S12", "S33", "SPADE_J"), true);
+        
     }
     
 }

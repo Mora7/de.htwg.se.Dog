@@ -34,6 +34,7 @@ public class DrawTest {
         ISquare to = game.getSquare("S5");
         ValueEnum card = ValueEnum.FOUR;
         IPlayer player = game.getPlayer(0);
+        assertEquals(Draw.isDrawAllowed(from, to, card, player), false);
         player.getOccupiedSquares().add(from);
         assertEquals(Draw.isDrawAllowed(from, to, card, player), true);
         card = ValueEnum.EIGHT;
@@ -51,5 +52,17 @@ public class DrawTest {
         card = ValueEnum.FIVE;
         player.getOccupiedSquares().add(from);
         assertEquals(Draw.isDrawAllowed(from, to, card, player), true);
+        player.getOccupiedSquares().add(to);
+        assertEquals(Draw.isDrawAllowed(from, to, card, player), false);
+        
+        
+        from = game.getSquare("S10");
+        to = game.getSquare("S33");
+        card = ValueEnum.JACK;
+        player.getOccupiedSquares().add(from);
+        assertEquals(Draw.isDrawAllowed(from, to, card, player), false);
+        to.setOccupation(true);
+        assertEquals(Draw.isDrawAllowed(from, to, card, player), true);
+        
     }
 }
