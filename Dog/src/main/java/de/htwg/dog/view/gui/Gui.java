@@ -72,7 +72,7 @@ public final class Gui extends JFrame implements IView {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
-    public void createGui(){
+    private void createGui(){
         
         this.getContentPane().removeAll();
         
@@ -202,5 +202,4 @@ public final class Gui extends JFrame implements IView {
         
         repaint();
     }
-
 }

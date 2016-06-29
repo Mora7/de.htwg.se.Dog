@@ -6,9 +6,7 @@
 
 package de.htwg.dog.view.gui;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

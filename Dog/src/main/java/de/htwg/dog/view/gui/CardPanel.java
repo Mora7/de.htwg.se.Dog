@@ -115,35 +115,35 @@ public final class CardPanel extends JPanel {
             this.rect = new Rectangle2D.Double(0, 0, image.getWidth(), image.getHeight());
         }
 
-        public BufferedImage getImage() {
+        private BufferedImage getImage() {
             return image;
         }
 
-        public String getValue() {
+        private String getValue() {
             return value;
         }
 
-        public int getX() {
+        private int getX() {
             return (int) rect.getX();
         }
 
-        public int getY() {
+        private int getY() {
             return (int) rect.getY();
         }
 
-        public int getWidth() {
+        private int getWidth() {
             return (int) rect.getWidth();
         }
 
-        public int getHeight() {
+        private int getHeight() {
             return (int) rect.getHeight();
         }
 
-        public void setRect(Rectangle2D rectangle) {
+        private void setRect(Rectangle2D rectangle) {
             rect = rectangle;
         }
 
-        public Rectangle2D getRect() {
+        private Rectangle2D getRect() {
             return rect;
         }
     }
