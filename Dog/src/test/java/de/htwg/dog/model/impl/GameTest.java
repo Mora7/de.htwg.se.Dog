@@ -75,7 +75,7 @@ public class GameTest {
         assertEquals(game.getCurrentPlayer().getPlayerNumber(), 1);
         
         
-        game.getCurrentPlayer().getFinishSquares().stream().forEach(
+        game.getCurrentPlayer().getFinishSquares().forEach(
                 finishSquare -> finishSquare.setOccupation(true));
         game.nextPlayer();
         assertEquals(game.getCurrentPlayer().getPlayerNumber(), 1);
@@ -86,7 +86,7 @@ public class GameTest {
         System.out.println("getWinner");
         assertEquals(game.getWinner(), null);
         IPlayer winner = game.getCurrentPlayer();
-        winner.getFinishSquares().stream().forEach(finishSquare ->
+        winner.getFinishSquares().forEach(finishSquare ->
             finishSquare.setOccupation(true));
         game.doTurn("", "", "");
         assertEquals(game.getWinner(), winner);
@@ -193,6 +193,8 @@ public class GameTest {
         
         game.getCurrentPlayer().getOccupiedSquares().add(game.getSquare("S0"));
         game.getSquare("S0").setOccupation(true);
+        game.getPlayer(1).getOccupiedSquares().clear();
+        game.getPlayer(1).getHomeSquares().forEach(homeSquare -> homeSquare.setOccupation(false));
         game.getPlayer(1).getOccupiedSquares().add(game.getSquare("S10"));
         game.getSquare("S10").setOccupation(true);
         game.getCurrentPlayer().getCards().clear();
