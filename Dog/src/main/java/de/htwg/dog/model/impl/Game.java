@@ -151,46 +151,49 @@ public final class Game implements IModel {
         }
         return null;
     }
+    
+    public boolean hasMissingParameter(String s1, String s2, String card){
+        if ("".equals(card)) {
+            info = "Keine Karte ausgewählt.";
+            return true;
+        } else if ("".equals(s1) || "".equals(s2)) {
+            info = "Zu wenig Felder ausgewählt.";
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean hasErroneousParameter(ISquare from, ISquare to, ICard card) {
+       if (from == null || to == null) {
+            info = "Unbekanntes Feld ausgewählt.";
+            return true;
+        } else if (card == null) {
+            info = "Unbekannte Karte ausgewählt.";
+            return true;
+        }else if (!from.isOccupied()) {
+            info = "Feld ohne Spielfigur gewählt";
+            return true;
+        }
+       
+        return false;
+    }
+            
 
     @Override
     public boolean doTurn(String s1, String s2, String card) {
 
-        if (checkVictoryConditions()) {
-            return false;
-        }
-
-        if ("".equals(card)) {
-            info = "Keine Karte ausgewählt.";
-            return false;
-        }
-
-        if ("".equals(s1) || "".equals(s2)) {
-            info = "Zu wenig Felder ausgewählt.";
-            return false;
-        }
+        if (checkVictoryConditions() || hasMissingParameter(s1, s2, card))
+            return false; 
 
         ISquare from = getSquare(s1);
         ISquare to = getSquare(s2);
         ICard selectedCard = currentPlayer.getCardByName(card);
 
-        if (from == null || to == null) {
-            info = "Unbekanntes Feld ausgewählt.";
+        if(hasErroneousParameter(from, to, selectedCard))
             return false;
-        }
-
-        if (selectedCard == null) {
-            info = "Unbekannte Karte ausgewählt.";
-            return false;
-        }
-
-        if (!from.isOccupied()) {
-            info = "Feld ohne Spielfigur gewählt";
-            return false;
-        }
-
+        
         if (!Draw.isDrawAllowed(from, to,
                 ValueEnum.valueOf(selectedCard.getValue()), currentPlayer)) {
-
             info = "Unerlaubter Zug.";
             return false;
         }
@@ -211,16 +214,14 @@ public final class Game implements IModel {
         currentPlayer.getOccupiedSquares().remove(from);
         from.setOccupation(false);
 
-        currentPlayer.getOccupiedSquares().add(to);
         to.setOccupation(true);
-
+        currentPlayer.getOccupiedSquares().add(to);
         currentPlayer.getCards().remove(selectedCard);
 
         nextPlayer();
         info = "Der Zug war erfolgreich.";
 
         return true;
-
     }
     
     private void sendPlayerTokenHome(IPlayer player){

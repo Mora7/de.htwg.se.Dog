@@ -43,7 +43,7 @@ public class Draw {
 
         //from home to start square
         if (from.getType() == Square.Type.HOME && to == player.getStartSquare())
-            return fromHomeToStandart(from, to, card);
+            return card == ValueEnum.ACE || card == ValueEnum.KING;
         
         //from standart to standart square
         if (from.getType() == Square.Type.STANDART && to.getType() == Square.Type.STANDART)
@@ -54,10 +54,6 @@ public class Draw {
             fromStandartToFinish(from, to, card, player);
 
         return false;
-    }
-    
-    public static boolean fromHomeToStandart(ISquare from, ISquare to, ValueEnum card) {
-        return (card == ValueEnum.ACE || card == ValueEnum.KING);
     }
     
     public static boolean fromStandartToStandart(ISquare from, ISquare to, ValueEnum card, IPlayer player) {
