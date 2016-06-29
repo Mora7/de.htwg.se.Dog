@@ -12,7 +12,7 @@ import de.htwg.dog.model.ISquare;
  *
  * @author kev
  */
-public class Draw {
+public final class Draw {
 
     private Draw() {
     }

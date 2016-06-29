@@ -10,7 +10,6 @@ import de.htwg.dog.controller.impl.Controller;
 import de.htwg.dog.model.impl.ModelFactory;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -46,6 +45,7 @@ public class TuiTest {
         System.out.println("processInput");
         tui.processInput("");
         tui.processInput("random input");
+        tui.processInput("S1,S2,SPADE_A");
         tui.processInput("v");
         tui.processInput("start");
         tui.processInput("exit");
