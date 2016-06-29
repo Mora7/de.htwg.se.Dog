@@ -183,7 +183,7 @@ public final class Game implements IModel {
             return false;
         }
 
-        if (from.isOccupied()) {
+        if (!from.isOccupied()) {
             info = "Feld ohne Spielfigur gewählt";
             return false;
         }
@@ -198,21 +198,14 @@ public final class Game implements IModel {
         for (IPlayer player : players) {
 
             if (player.occupiesSquare(to)) {
+                
                 player.getOccupiedSquares().remove(to);
-
                 to.setOccupation(false);
 
-                if (ValueEnum.valueOf(selectedCard.getValue()) == ValueEnum.JACK) {
+                if (ValueEnum.valueOf(selectedCard.getValue()) == ValueEnum.JACK)
                     player.getOccupiedSquares().add(from);
-                } else {
-                    for (ISquare homeSquare : player.getHomeSquares()) {
-                        if (!homeSquare.isOccupied()) {
-                            player.getOccupiedSquares().add(homeSquare);
-                        }
-                        homeSquare.setOccupation(true);
-                        break;
-                    }
-                }
+                else 
+                    sendPlayerTokenHome(player);
             }
         }
 
@@ -229,6 +222,17 @@ public final class Game implements IModel {
 
         return true;
 
+    }
+    
+    private void sendPlayerTokenHome(IPlayer player){
+        
+        for (ISquare homeSquare : player.getHomeSquares()) {
+            if (!homeSquare.isOccupied()) {
+                player.getOccupiedSquares().add(homeSquare);
+            }
+            homeSquare.setOccupation(true);
+            break;
+        }
     }
 
     private boolean checkVictoryConditions() {

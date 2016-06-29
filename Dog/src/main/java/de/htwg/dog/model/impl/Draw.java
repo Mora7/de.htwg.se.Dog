@@ -16,64 +16,70 @@ public class Draw {
 
     private Draw() {
     }
-    
+
     public static boolean isDrawAllowed(ISquare from, ISquare to, ValueEnum card, IPlayer player) {
 
         boolean validDraw = false;
+
+        if (card != ValueEnum.JOKER) 
+            return checkNonJokerCardDraw(from, to, card, player);
         
-        if(card == ValueEnum.JOKER) {
-            for(ValueEnum value : ValueEnum.values()) {
-                if(value != ValueEnum.JOKER && value != ValueEnum.JACK) { 
-                    validDraw = isDrawAllowed(from, to, value, player);
-                    if(validDraw) 
-                        return validDraw;
-                }
+        for (ValueEnum value : ValueEnum.values()) {
+            if (value != ValueEnum.JOKER && value != ValueEnum.JACK) {
+                validDraw = checkNonJokerCardDraw(from, to, value, player);
+                if(validDraw)
+                    break;
             }
         }
+        
+        return validDraw;
+    }
+        
+    public static boolean checkNonJokerCardDraw(ISquare from, 
+            ISquare to, ValueEnum card, IPlayer player) {
 
-        for (ISquare square : player.getOccupiedSquares()) {
-            
-            // square has token from current player
-            if (from.getName().equals(square.getName())) {
+        boolean validDraw = false;
+        
+        if (!player.occupiesSquare(from)) {
+            return false;
+        }
 
-                //from home to start square
-                if (from.getType() == Square.Type.HOME && to == player.getStartSquare() && 
-                        (card == ValueEnum.ACE || card == ValueEnum.KING)) {
-                    return true;
+        //from home to start square
+        if (from.getType() == Square.Type.HOME && 
+                to == player.getStartSquare() && 
+                (card == ValueEnum.ACE || card == ValueEnum.KING)) {
+            validDraw = true;
+        }
+
+        //from standart to standart square
+        if (from.getType() == Square.Type.STANDART
+                && to.getType() == Square.Type.STANDART) {
+            validDraw |= fromStandartToStandart(from, to, card.getI1());
+            validDraw |= fromStandartToStandart(from, to, card.getI2());
+            validDraw |= (card == ValueEnum.JACK
+                    && to.isOccupied()
+                    && !player.occupiesSquare(to));
+        }
+
+        //from standart to finish square
+        if (from.getType() == ISquare.Type.STANDART
+                && to.getType() == ISquare.Type.FINISH) {
+            for (ISquare finishSquare : player.getFinishSquares()) {
+                if (to.getName().equals(finishSquare.getName())) {
+                    validDraw |= fromNormalToFinish(from, to, card.getI1(), player);
+                    validDraw |= fromNormalToFinish(from, to, card.getI2(), player);
                 }
-
-                //from standart to standart square
-                if (from.getType() == Square.Type.STANDART && to.getType() 
-                        == Square.Type.STANDART) {
-                    validDraw |= fromStandartToStandart(from, to, card.getI1());
-                    validDraw |= fromStandartToStandart(from, to, card.getI2());
-                    validDraw |= (card == ValueEnum.JACK) 
-                                    && to.isOccupied() 
-                                    && !player.getOccupiedSquares().contains(to);
-                    
-                    return validDraw;
-                }
-
-                //from standart to finish square
-                if (from.getType() == ISquare.Type.STANDART && to.getType() 
-                        == ISquare.Type.FINISH) {
-                    for(ISquare finishSquare : player.getFinishSquares()){
-                        if(to.getName().equals(finishSquare.getName())){
-                            validDraw |= fromNormalToFinish(from,to,card.getI1(), player);
-                            validDraw |= fromNormalToFinish(from,to,card.getI2(), player);
-                        }
-                    }
-                } 
             }
         }
 
         return validDraw;
     }
-    
+
     public static boolean fromStandartToStandart(ISquare from, ISquare to, int valueToGo) {
         int actualValueToGo = valueToGo;
-        if(valueToGo < 0) 
-            actualValueToGo+=48;
+        if (valueToGo < 0) {
+            actualValueToGo += 48;
+        }
         int difference = Int.getDifference(from.getNumber(), to.getNumber());
         return difference == actualValueToGo;
     }
@@ -87,12 +93,11 @@ public class Draw {
         return false;
     }
 
-
     static class Int {
 
-        private Int(){
+        private Int() {
         }
-        
+
         public static int getDifference(int i1, int i2) {
             int diff = i2 - i1;
             if (diff < 0) {
