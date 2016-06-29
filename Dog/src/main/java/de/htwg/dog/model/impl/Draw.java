@@ -81,9 +81,6 @@ public class Draw {
     public static boolean fromStandartToFinish(ISquare from, ISquare to, ValueEnum card, IPlayer player) {
         boolean validDraw = false;
         
-        if(player.occupiesSquare(to))
-            return false;
-        
         for (ISquare finishSquare : player.getFinishSquares()) {
             if (to.getName().equals(finishSquare.getName())) {
                 validDraw |= fromStandartToFinish(from, to, card.getI1(), player.getStartSquare());
@@ -91,7 +88,7 @@ public class Draw {
             }
         }
 
-        return validDraw;
+        return validDraw && !player.occupiesSquare(to);
     }
     
     public static boolean fromStandartToFinish(ISquare from, ISquare to, int valueToGo, ISquare startSquare) {
